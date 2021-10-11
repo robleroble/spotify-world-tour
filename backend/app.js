@@ -2,8 +2,12 @@
 const express = require("express");
 const app = express();
 
-// can't remember what this is used for
+// Routes
+const musicRoutes = require("./Routes/musicRoutes.js");
+
+// Middlewares
 app.use(express.json());
+app.use("/music", musicRoutes);
 
 // 404 Handler
 
