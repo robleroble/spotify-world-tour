@@ -44,7 +44,7 @@ const selectedCountryLayer = {
   paint: {
     "fill-outline-color": "#168d40",
     "fill-color": "#1DB954",
-    "fill-opacity": 1,
+    "fill-opacity": 0.3,
   },
   layout: {
     visibility: "none",

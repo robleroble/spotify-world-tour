@@ -51,6 +51,12 @@ function MapDevTo() {
       setSelectedCountry(country);
 
       map.current.setFilter("selected-country", ["==", "iso_3166_1", country]);
+
+      // map centers on click event
+      map.current.flyTo({
+        center: e.lngLat,
+        speed: 0.7,
+      });
     });
 
     // changes cursor when hovering over layer
