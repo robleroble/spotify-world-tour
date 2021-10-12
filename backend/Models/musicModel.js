@@ -1,3 +1,5 @@
+import SpotifyAPICaller from "../SpotifyAPICaller";
+
 class Music {
   /** Requires:
    *
@@ -9,7 +11,7 @@ class Music {
    * ** need to research different spotify browse API calls
    *
    */
-  static async getSongs(data) {}
+  static async getFeaturedPlaylists(data) {}
 }
 
 module.exports = Music;

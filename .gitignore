@@ -1,3 +1,5 @@
 /backend/node_modules
 
 /sptfy-wt-frontend/node_modules
+
+/backend/config.js
