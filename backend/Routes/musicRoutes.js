@@ -3,17 +3,35 @@ const router = express.Router();
 const SpotifyApiCaller = require("../SpotifyAPICaller");
 
 router.post("/", async function (req, res, next) {
-  //destructure args??? or just pass all directly into model func
   const q = req.query;
   try {
     // pass query/body args to model to get music
-    console.log("working?");
     const music = await SpotifyApiCaller.getClientCredentialsToken();
-    console.log("not working");
     // return res.json({music})
     return res.json({ music });
   } catch (err) {
     console.log("error");
+    return next(err);
+  }
+});
+
+router.get("/featured", async function (req, res, next) {
+  try {
+    const q = req.query;
+    const featuredPlaylists = await SpotifyApiCaller.getFeaturedPlaylists(q);
+    return res.json({ featuredPlaylists });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.get("/playlisttracks", async function (req, res, next) {
+  try {
+    const { playlistID } = req.body;
+    console.log(req.body);
+    const tracks = await SpotifyApiCaller.getPlaylistTracks(playlistID);
+    return res.json({ tracks });
+  } catch (err) {
     return next(err);
   }
 });

@@ -12,31 +12,47 @@ const BASE_URL = "https://api.spotify.com/v1";
  *
  */
 
+const access_token =
+  "BQD8JR_F2o49rlCUtdrNHfdPkCERq0WTZDT1hWTUy7zMnzJ93mfjF53AkAZ9BaPeB8JtZxou4BDBckL8hk8";
+
 class SpotifyApiCaller {
   static token;
 
   // client credentials token
   static async getClientCredentialsToken() {
-    const ccDataString = "grant_type=client_credentials";
     const url = "https://accounts.spotify.com/api/token";
-    // const method = "post";
+    const method = "POST";
+    const data = "grant_type=client_credentials";
     const headers = {
       Authorization: `Basic ${BASE_64_CLIENT_CREDENTIALS}`,
     };
-    const method = "POST";
-    // const options = {
-    //   ccUrl,
-    //   method: "POST",
-    //   headers: headers,
-    //   body: ccDataString,
-    // };
-    const data = "grant_type=client_credentials";
     return (await axios({ url, method, data, headers })).data;
   }
 
   static async getFeaturedPlaylists(data) {
-    let res = await this.request("/browse/featured-playlists", { data });
-    return res;
+    let paramsArr = [];
+    for (const [key, value] of Object.entries(data)) {
+      paramsArr.push(`${key}=${value}`);
+    }
+    let params = paramsArr.join("&");
+    console.log(params);
+
+    const url = `https://api.spotify.com/v1/browse/featured-playlists?${params}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return (await axios({ url, method, headers })).data;
+  }
+
+  static async getPlaylistTracks(playlistID) {
+    console.log(playlistID);
+    const url = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    return (await axios({ url, method, headers })).data;
   }
 }
 
