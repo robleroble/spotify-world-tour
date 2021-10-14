@@ -1,6 +1,7 @@
 // Spotify World Tour express backend
 const express = require("express");
 const app = express();
+const ExpressError = require("./ExpressError");
 
 // Routes
 const musicRoutes = require("./Routes/musicRoutes.js");

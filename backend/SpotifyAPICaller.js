@@ -13,10 +13,10 @@ const BASE_URL = "https://api.spotify.com/v1";
  */
 
 const access_token =
-  "BQD8JR_F2o49rlCUtdrNHfdPkCERq0WTZDT1hWTUy7zMnzJ93mfjF53AkAZ9BaPeB8JtZxou4BDBckL8hk8";
+  "BQCrjFo1O5z0dIj44stFkBwi93gH5qJY9IONvVYiwpLw2i00Pxh6Cm3mWSJK1IxeG4iPLvxHAAdoLp9y3rc";
 
 class SpotifyApiCaller {
-  static token;
+  // static access_token;
 
   // client credentials token
   static async getClientCredentialsToken() {
@@ -29,19 +29,32 @@ class SpotifyApiCaller {
     return (await axios({ url, method, data, headers })).data;
   }
 
-  static async getFeaturedPlaylists(data) {
-    let paramsArr = [];
-    for (const [key, value] of Object.entries(data)) {
-      paramsArr.push(`${key}=${value}`);
-    }
-    let params = paramsArr.join("&");
-    console.log(params);
-
-    const url = `https://api.spotify.com/v1/browse/featured-playlists?${params}`;
+  static async getFeaturedPlaylist(country, offset) {
+    const url = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&offset=${offset}`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${access_token}`,
     };
+    return (await axios({ url, method, headers })).data;
+  }
+
+  static async getPlaylistByCategory(country, category_id, offset) {
+    const url = `https://api.spotify.com/v1/browse/categories/${category_id}/playlists?country=${country}&offset=${offset}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    console.log(url);
+    return (await axios({ url, method, headers })).data;
+  }
+
+  static async getAlbumNewReleases(country, offset) {
+    const url = `https://api.spotify.com/v1/browse/new-releases?country=${country}&offset=${offset}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${access_token}`,
+    };
+    console.log(url);
     return (await axios({ url, method, headers })).data;
   }
 
