@@ -47,7 +47,6 @@ function MapDevTo() {
         "visible"
       );
       let country = e.features[0].properties.iso_3166_1;
-      console.log(country);
       setSelectedCountry(country);
 
       map.current.setFilter("selected-country", ["==", "iso_3166_1", country]);

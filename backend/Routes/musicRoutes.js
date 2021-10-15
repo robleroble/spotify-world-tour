@@ -8,7 +8,6 @@ router.post("/", async function (req, res, next) {
   try {
     // pass query/body args to model to get music
     const music = await SpotifyApiCaller.getClientCredentialsToken();
-    // return res.json({music})
     return res.json({ music });
   } catch (err) {
     console.log("error");

@@ -13,7 +13,6 @@ class Music {
    */
   static async getFeaturedPlaylist(data) {
     const { country } = data;
-    console.log(country);
     const offset = Math.floor(Math.random() * 20) + 1;
 
     // Need to filter out data that I need
@@ -21,8 +20,18 @@ class Music {
       country,
       offset
     );
-    console.log(featuredPlaylist);
-    return featuredPlaylist;
+
+    // return featuredPlaylist;
+
+    // get 20 track URI's from playlist
+    let trackURIs = [];
+    for (let item of featuredPlaylist) {
+      console.log(item.track.uri);
+      trackURIs.push(item.track.uri);
+    }
+    console.log(trackURIs);
+    // console.log("hi");
+    return trackURIs;
   }
 
   static async getPlaylistByCategory(data) {

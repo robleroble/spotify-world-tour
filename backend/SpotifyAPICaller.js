@@ -13,7 +13,7 @@ const BASE_URL = "https://api.spotify.com/v1";
  */
 
 const access_token =
-  "BQCrjFo1O5z0dIj44stFkBwi93gH5qJY9IONvVYiwpLw2i00Pxh6Cm3mWSJK1IxeG4iPLvxHAAdoLp9y3rc";
+  "BQDVhZPHDjqPIJl-9DxrYCdCJfwILVjzAbxilNyma7Ar-K4L0NpoJqLPRLIdImY47DqfsE-IEtx0euLRSXo";
 
 class SpotifyApiCaller {
   // static access_token;
@@ -35,9 +35,22 @@ class SpotifyApiCaller {
     const headers = {
       Authorization: `Bearer ${access_token}`,
     };
-    return (await axios({ url, method, headers })).data;
+    // returns all data from call
+    // return (await axios({ url, method, headers })).data;
+
+    // returns first playlist's ID
+    // return (await axios({ url, method, headers })).data.playlists.items[0].id;
+
+    // returns first playlist's URI
+    // return (await axios({ url, method, headers })).data.playlists.items[0].uri;
+
+    // get playlist Tracks
+    return this.getPlaylistTracks(
+      (await axios({ url, method, headers })).data.playlists.items[0].id
+    );
   }
 
+  // This api doesn't seem to necessarily get country-specific music
   static async getPlaylistByCategory(country, category_id, offset) {
     const url = `https://api.spotify.com/v1/browse/categories/${category_id}/playlists?country=${country}&offset=${offset}`;
     const method = "GET";
@@ -59,13 +72,12 @@ class SpotifyApiCaller {
   }
 
   static async getPlaylistTracks(playlistID) {
-    console.log(playlistID);
-    const url = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
+    const url = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=20`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${access_token}`,
     };
-    return (await axios({ url, method, headers })).data;
+    return (await axios({ url, method, headers })).data.items;
   }
 }
 
