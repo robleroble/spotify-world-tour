@@ -1,13 +1,12 @@
-nav a .nav-link {
-  text-decoration: none;
+nav {
+  background-color: #004700;
+  height: 60px;
+}
+
+.navbar-text {
   color: whitesmoke;
 }
 
-nav a .nav-link:hover {
-  color: lightslategray;
-}
-
-nav a .nav-link:visited {
-  text-decoration: none;
-  color: whitesmoke;
+.navbar-text:hover {
+  color: rgb(172, 173, 172);
 }

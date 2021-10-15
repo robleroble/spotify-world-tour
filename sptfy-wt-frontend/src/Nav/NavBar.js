@@ -5,18 +5,16 @@ import "./NavBar.css";
 
 function NavBar() {
   return (
-    <div>
-      <Navbar>
-        <NavbarBrand className="ms-4 navbar-brand">
-          Spotify World Tour
-        </NavbarBrand>
-        <Nav>
-          <NavItem>
-            <NavLink href="#">Login</NavLink>
-          </NavItem>
-        </Nav>
-      </Navbar>
-    </div>
+    <Navbar className="d-flex justify-content-between mw-100">
+      <NavbarBrand className="ms-4 navbar-text">Spotify World Tour</NavbarBrand>
+      <Nav>
+        <NavItem>
+          <NavLink href="#" className="navbar-text">
+            Login
+          </NavLink>
+        </NavItem>
+      </Nav>
+    </Navbar>
   );
 }
 
