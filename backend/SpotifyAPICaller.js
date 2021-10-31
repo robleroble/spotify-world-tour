@@ -1,8 +1,5 @@
 const axios = require("axios");
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = require("./config");
-
-const BASE_64_CLIENT_CREDENTIALS =
-  "MWMyZmFhNWUwMjU4NDRjZTg0YjNmZTMxMDUyYTVkNzA6NDcwNzliNTEwYTI5NDRkZWE0NTE5NTlmMDUxZWQwYTc=";
+const { BASE_64_CLIENT_CREDENTIALS } = require("./config");
 
 const BASE_URL = "https://api.spotify.com/v1";
 
@@ -12,8 +9,9 @@ const BASE_URL = "https://api.spotify.com/v1";
  *
  */
 
+// client credentials token for temp access to API
 const access_token =
-  "BQDVhZPHDjqPIJl-9DxrYCdCJfwILVjzAbxilNyma7Ar-K4L0NpoJqLPRLIdImY47DqfsE-IEtx0euLRSXo";
+  "BQDnY18dZzDU0nOwrd8WgrcG94hZeHnbpra3XeqB2Y2qQWaneA4SaEclVjXNHKHJFwEH1T3a3pH_iMya3jo";
 
 class SpotifyApiCaller {
   // static access_token;
@@ -26,39 +24,8 @@ class SpotifyApiCaller {
     const headers = {
       Authorization: `Basic ${BASE_64_CLIENT_CREDENTIALS}`,
     };
+    console.log(BASE_64_CLIENT_CREDENTIALS);
     return (await axios({ url, method, data, headers })).data;
-  }
-
-  static async getFeaturedPlaylist(country, offset) {
-    const url = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&offset=${offset}`;
-    const method = "GET";
-    const headers = {
-      Authorization: `Bearer ${access_token}`,
-    };
-    // returns all data from call
-    // return (await axios({ url, method, headers })).data;
-
-    // returns first playlist's ID
-    // return (await axios({ url, method, headers })).data.playlists.items[0].id;
-
-    // returns first playlist's URI
-    // return (await axios({ url, method, headers })).data.playlists.items[0].uri;
-
-    // get playlist Tracks
-    return this.getPlaylistTracks(
-      (await axios({ url, method, headers })).data.playlists.items[0].id
-    );
-  }
-
-  // This api doesn't seem to necessarily get country-specific music
-  static async getPlaylistByCategory(country, category_id, offset) {
-    const url = `https://api.spotify.com/v1/browse/categories/${category_id}/playlists?country=${country}&offset=${offset}`;
-    const method = "GET";
-    const headers = {
-      Authorization: `Bearer ${access_token}`,
-    };
-    console.log(url);
-    return (await axios({ url, method, headers })).data;
   }
 
   static async getAlbumNewReleases(country, offset) {

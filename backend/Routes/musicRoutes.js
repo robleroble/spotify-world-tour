@@ -15,24 +15,6 @@ router.post("/", async function (req, res, next) {
   }
 });
 
-router.get("/featured-playlist", async function (req, res, next) {
-  try {
-    const featuredPlaylists = await Music.getFeaturedPlaylist(req.body);
-    return res.json({ featuredPlaylists });
-  } catch (err) {
-    return next(err);
-  }
-});
-
-router.get("/playlist-by-category", async function (req, res, next) {
-  try {
-    const playlist = await Music.getPlaylistByCategory(req.body);
-    return res.json({ playlist });
-  } catch (err) {
-    return next(err);
-  }
-});
-
 router.get("/album-new-releases", async function (req, res, next) {
   try {
     const playlist = await Music.getAlbumNewReleases(req.body);

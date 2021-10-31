@@ -34,18 +34,6 @@ class Music {
     return trackURIs;
   }
 
-  static async getPlaylistByCategory(data) {
-    const { country, category_id } = data;
-    const offset = Math.floor(Math.random() * 20) + 1;
-
-    const playlist = await SpotifyApiCaller.getPlaylistByCategory(
-      country,
-      category_id,
-      offset
-    );
-    return playlist;
-  }
-
   static async getAlbumNewReleases(data) {
     const { country } = data;
     const offset = Math.floor(Math.random() * 20) + 1;

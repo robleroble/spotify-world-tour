@@ -3,3 +3,5 @@
 /sptfy-wt-frontend/node_modules
 
 /backend/config.js
+
+/backend/.env
