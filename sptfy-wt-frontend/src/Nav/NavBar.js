@@ -1,5 +1,6 @@
 import React from "react";
-import { Navbar, NavbarBrand, Nav, NavLink, NavItem } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Navbar, NavbarBrand, NavLink, Nav, NavItem } from "reactstrap";
 
 import "./NavBar.css";
 
@@ -9,8 +10,11 @@ function NavBar() {
       <NavbarBrand className="ms-4 navbar-text">Spotify World Tour</NavbarBrand>
       <Nav>
         <NavItem>
-          <NavLink href="#" className="navbar-text">
-            Login
+          <NavLink className="navbar-text">Login</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="navbar-text">
+            <Link to="profile">Profile</Link>
           </NavLink>
         </NavItem>
       </Nav>

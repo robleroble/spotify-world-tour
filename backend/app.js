@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const ExpressError = require("./ExpressError");
+const cors = require("cors");
 
 // spotify auth stuff
 const session = require("express-session");
@@ -19,6 +20,7 @@ const {
 } = require("./config");
 
 // Middlewares
+app.use(cors());
 app.use(express.json());
 app.use("/music", musicRoutes);
 
@@ -67,6 +69,8 @@ passport.use(
     }
   )
 );
+
+app.use(session({ secret: "secret" }));
 
 /**
  * Passport middlewares

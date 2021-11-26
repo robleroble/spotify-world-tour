@@ -24,7 +24,7 @@ class SpotifyApiCaller {
     const headers = {
       Authorization: `Basic ${BASE_64_CLIENT_CREDENTIALS}`,
     };
-    console.log(BASE_64_CLIENT_CREDENTIALS);
+    console.log(url);
     return (await axios({ url, method, data, headers })).data;
   }
 
