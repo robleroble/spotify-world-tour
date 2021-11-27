@@ -21,13 +21,14 @@ router.get("/login/failed", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  console.log("logged out");
+  // console.log("user:", user);
   req.logout();
-  res.redirect(CLIENT_URL);
 });
 
 router.get("/test", (req, res) => {
   console.log("it's going");
-  return res.json({ sucess: "true" });
+  return res.json({ success: "true" });
 });
 
 router.get(
@@ -43,7 +44,7 @@ router.get(
     failureRedirect: "/login/failed",
   }),
   function (req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     res.redirect("http://localhost:3001/");
   }
 );

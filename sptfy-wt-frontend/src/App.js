@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import Home from "./Home";
 import PlaylistMap from "./PlaylistMap";
 import UserContext from "./UserContext";
+import axios from "axios";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,10 +37,18 @@ function App() {
     getUser();
   }, []);
 
+  async function logout() {
+    setUser(null);
+    await axios({
+      url: "http://localhost:3000/auth/logout",
+      method: "get",
+    });
+  }
+
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <NavBar />
+        <NavBar logout={logout} />
         <Routes>
           <Route index element={<Home />} />
           <Route path="browse" element={<Map />}>

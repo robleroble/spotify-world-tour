@@ -14,6 +14,8 @@ passport.use(
       callbackURL: redirect_URI,
     },
     function (accessToken, refreshToken, expires_in, profile, done) {
+      console.log("accessToken", accessToken);
+      console.log("refreshToken", refreshToken);
       return done(null, profile);
     }
   )

@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, NavbarBrand, NavLink, Nav, NavItem } from "reactstrap";
 import UserContext from "../UserContext";
 
 import "./NavBar.css";
 
-function NavBar() {
+function NavBar({ logout }) {
+  const navigate = useNavigate();
   const spotifyLogin = () => {
     window.open("http://localhost:3000/auth/spotify", "_self");
   };
@@ -20,7 +21,15 @@ function NavBar() {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="navbar-text">Logout</NavLink>
+          <NavLink
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
+            className="navbar-text"
+          >
+            Logout
+          </NavLink>
         </NavItem>
       </>
     );
