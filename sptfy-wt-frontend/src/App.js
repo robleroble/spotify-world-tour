@@ -7,6 +7,33 @@ import Home from "./Home";
 import PlaylistMap from "./PlaylistMap";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:3000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   return (
     <BrowserRouter>
       <NavBar />
@@ -15,7 +42,7 @@ function App() {
         <Route path="browse" element={<Map />}>
           <Route path="playlist" element={<PlaylistMap />} />
         </Route>
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile user={user} />} />
       </Routes>
     </BrowserRouter>
   );

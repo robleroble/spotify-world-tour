@@ -5,12 +5,18 @@ import { Navbar, NavbarBrand, NavLink, Nav, NavItem } from "reactstrap";
 import "./NavBar.css";
 
 function NavBar() {
+  const spotifyLogin = () => {
+    window.open("http://localhost:3000/auth/spotify", "_self");
+  };
+
   return (
     <Navbar className="d-flex justify-content-between mw-100">
       <NavbarBrand className="ms-4 navbar-text">Spotify World Tour</NavbarBrand>
       <Nav>
         <NavItem>
-          <NavLink className="navbar-text">Login</NavLink>
+          <NavLink onClick={spotifyLogin} className="navbar-text">
+            Login
+          </NavLink>
         </NavItem>
         <NavItem>
           <NavLink className="navbar-text">
