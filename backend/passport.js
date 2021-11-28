@@ -14,9 +14,9 @@ passport.use(
       callbackURL: redirect_URI,
     },
     function (accessToken, refreshToken, expires_in, profile, done) {
-      console.log("accessToken", accessToken);
-      console.log("refreshToken", refreshToken);
-      return done(null, profile);
+      // janky way to add tokens to my user/profile object
+      let user = { ...profile, accessToken, refreshToken };
+      return done(null, user);
     }
   )
 );

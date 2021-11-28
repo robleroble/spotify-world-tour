@@ -10,6 +10,7 @@ import axios from "axios";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
     const getUser = () => {
@@ -27,7 +28,9 @@ function App() {
           throw new Error("authentication has been failed!");
         })
         .then((resObject) => {
-          console.log(resObject.user);
+          // console.log(resObject.user);
+          console.log(resObject.accessToken);
+          setAccessToken(resObject.user.accessToken);
           setUser(resObject.user);
         })
         .catch((err) => {
@@ -47,7 +50,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider value={{ user, setUser, accessToken }}>
         <NavBar logout={logout} />
         <Routes>
           <Route index element={<Home />} />

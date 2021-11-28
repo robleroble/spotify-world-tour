@@ -4,9 +4,10 @@ const passport = require("passport");
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
+    // let user = req.user;
     res.status(200).json({
       success: true,
-      message: "successfull",
+      message: "successful",
       user: req.user,
       //   cookies: req.cookies
     });
@@ -22,7 +23,6 @@ router.get("/login/failed", (req, res) => {
 
 router.get("/logout", (req, res) => {
   console.log("logged out");
-  // console.log("user:", user);
   req.logout();
 });
 
