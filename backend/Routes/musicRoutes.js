@@ -35,4 +35,23 @@ router.get("/playlisttracks", async function (req, res, next) {
   }
 });
 
+router.post("/get-album", async function (req, res, next) {
+  try {
+    console.log(req.body);
+    const { country, accessToken } = req.body;
+    console.log(country);
+    console.log(accessToken);
+    // console.log(req.body);
+    const offset = Math.floor(Math.random() * 20) + 1;
+    let albums = await SpotifyApiCaller.getAlbumNewReleases(
+      country,
+      offset,
+      accessToken
+    );
+    return res.json({ albums });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = router;

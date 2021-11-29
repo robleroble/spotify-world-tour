@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import {
   clearMapLayer,
@@ -6,6 +6,8 @@ import {
   worldviewFilter,
 } from "./MapStyles.js";
 import "./Map.css";
+import axios from "axios";
+import UserContext from "../UserContext";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
@@ -14,10 +16,26 @@ function MapDevTo() {
   const [lng, setLng] = useState(-34.5034);
   const [lat, setLat] = useState(16.0569);
   const [zoom, setZoom] = useState(2.27);
-  const [selectedCountry, setSelectedCountry] = useState("FR");
+  const [selectedCountry, setSelectedCountry] = useState("BR");
 
   const mapContainer = useRef("");
   const map = useRef(null);
+  const { accessToken } = useContext(UserContext);
+
+  async function getAlbum() {
+    console.log("get album async func");
+    console.log(selectedCountry);
+    let albums = await axios({
+      url: "http://localhost:3000/music/get-album",
+      method: "post",
+      data: {
+        country: selectedCountry,
+        accessToken,
+      },
+    });
+    console.log(albums.data);
+    return albums;
+  }
 
   /** Map Initialization on component mount */
   // adds clear layer to map
@@ -39,7 +57,7 @@ function MapDevTo() {
 
     // highlights clicked on countries
     map.current.on("click", "country-boundaries", function (e) {
-      console.log(e.features[0]);
+      console.log(e.features[0].properties.iso_3166_1);
 
       map.current.setLayoutProperty(
         "selected-country",
@@ -74,7 +92,11 @@ function MapDevTo() {
 
   return (
     <div className="App">
-      <div ref={mapContainer} className="map-container"></div>
+      <div
+        onClick={getAlbum}
+        ref={mapContainer}
+        className="map-container"
+      ></div>
     </div>
   );
 }

@@ -28,11 +28,11 @@ class SpotifyApiCaller {
     return (await axios({ url, method, data, headers })).data;
   }
 
-  static async getAlbumNewReleases(country, offset) {
+  static async getAlbumNewReleases(country, offset, accessToken) {
     const url = `https://api.spotify.com/v1/browse/new-releases?country=${country}&offset=${offset}`;
     const method = "GET";
     const headers = {
-      Authorization: `Bearer ${access_token}`,
+      Authorization: `Bearer ${accessToken}`,
     };
     console.log(url);
     return (await axios({ url, method, headers })).data;
