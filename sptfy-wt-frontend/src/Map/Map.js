@@ -8,6 +8,7 @@ import {
 import "./Map.css";
 import axios from "axios";
 import UserContext from "../UserContext";
+import SpotifyWidget from "../SpotifyWidget";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
@@ -22,6 +23,8 @@ function MapDevTo() {
   const map = useRef(null);
   const { accessToken } = useContext(UserContext);
 
+  const [albums, setAlbums] = useState(null);
+
   async function getAlbum() {
     console.log("get album async func");
     console.log(selectedCountry);
@@ -33,7 +36,9 @@ function MapDevTo() {
         accessToken,
       },
     });
-    console.log(albums.data);
+    console.log(albums.data.albums.albums.items[0].uri);
+    let albumUri = albums.data.albums.albums.items[0].uri;
+    setAlbums(albumUri);
     return albums;
   }
 
@@ -97,6 +102,7 @@ function MapDevTo() {
         ref={mapContainer}
         className="map-container"
       ></div>
+      <SpotifyWidget uri={albums} />;
     </div>
   );
 }

@@ -9,13 +9,7 @@ const BASE_URL = "https://api.spotify.com/v1";
  *
  */
 
-// client credentials token for temp access to API
-const access_token =
-  "BQDnY18dZzDU0nOwrd8WgrcG94hZeHnbpra3XeqB2Y2qQWaneA4SaEclVjXNHKHJFwEH1T3a3pH_iMya3jo";
-
 class SpotifyApiCaller {
-  // static access_token;
-
   // client credentials token
   static async getClientCredentialsToken() {
     const url = "https://accounts.spotify.com/api/token";
@@ -29,7 +23,7 @@ class SpotifyApiCaller {
   }
 
   static async getAlbumNewReleases(country, offset, accessToken) {
-    const url = `https://api.spotify.com/v1/browse/new-releases?country=${country}&offset=${offset}`;
+    const url = `${BASE_URL}/browse/new-releases?country=${country}&offset=${offset}`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -37,18 +31,6 @@ class SpotifyApiCaller {
     console.log(url);
     return (await axios({ url, method, headers })).data;
   }
-
-  static async getPlaylistTracks(playlistID) {
-    const url = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=20`;
-    const method = "GET";
-    const headers = {
-      Authorization: `Bearer ${access_token}`,
-    };
-    return (await axios({ url, method, headers })).data.items;
-  }
 }
-
-SpotifyApiCaller.token =
-  "BQDXSoY9I3hz5QeS27WwvgiChATCkrKKvQv8jGGA9frnarslste7zTEg8dWsE6rHw8HvsodVTaTrbUqWxYvsTVIQFIH0Oeu1NBzQLgEm73ilsaR5blrp8E3I7QVG_Xebpc1nwzXCY3tecw";
 
 module.exports = SpotifyApiCaller;

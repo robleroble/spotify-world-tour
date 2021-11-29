@@ -26,11 +26,6 @@ router.get("/logout", (req, res) => {
   req.logout();
 });
 
-router.get("/test", (req, res) => {
-  console.log("it's going");
-  return res.json({ success: "true" });
-});
-
 router.get(
   "/spotify",
   passport.authenticate("spotify", {
@@ -44,7 +39,6 @@ router.get(
     failureRedirect: "/login/failed",
   }),
   function (req, res) {
-    // console.log(req.user);
     res.redirect("http://localhost:3001/");
   }
 );

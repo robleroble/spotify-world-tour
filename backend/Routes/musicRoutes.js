@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Music = require("../Models/musicModel");
 const SpotifyApiCaller = require("../SpotifyAPICaller");
 
+// need to transfer this to auth routes
 router.post("/", async function (req, res, next) {
   const q = req.query;
   try {
@@ -15,33 +15,10 @@ router.post("/", async function (req, res, next) {
   }
 });
 
-router.get("/album-new-releases", async function (req, res, next) {
-  try {
-    const playlist = await Music.getAlbumNewReleases(req.body);
-    return res.json({ playlist });
-  } catch (err) {
-    return next(err);
-  }
-});
-
-router.get("/playlisttracks", async function (req, res, next) {
-  try {
-    const { playlistID } = req.body;
-    console.log(req.body);
-    const tracks = await SpotifyApiCaller.getPlaylistTracks(playlistID);
-    return res.json({ tracks });
-  } catch (err) {
-    return next(err);
-  }
-});
-
 router.post("/get-album", async function (req, res, next) {
   try {
-    console.log(req.body);
     const { country, accessToken } = req.body;
-    console.log(country);
-    console.log(accessToken);
-    // console.log(req.body);
+
     const offset = Math.floor(Math.random() * 20) + 1;
     let albums = await SpotifyApiCaller.getAlbumNewReleases(
       country,
