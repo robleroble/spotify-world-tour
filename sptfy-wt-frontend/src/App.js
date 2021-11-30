@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Map from "./Map/Map";
-import NavBar from "./Nav/NavBar";
-import Profile from "./Profile";
-import Home from "./Home";
-import PlaylistMap from "./PlaylistMap";
-import UserContext from "./UserContext";
 import axios from "axios";
+
+// Navbar component present throughout app/views
+import NavBar from "./Components/Nav/NavBar";
+
+// Views for main pages of app
+import Profile from "./Views/Profile/Profile";
+import Home from "./Views/Home/Home";
+import Browse from "./Views/Browse/Browse";
+
+// Context to store user/profile info
+import UserContext from "./Context/UserContext";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -52,9 +57,7 @@ function App() {
         <NavBar logout={logout} />
         <Routes>
           <Route index element={<Home />} />
-          <Route path="browse" element={<Map />}>
-            <Route path="playlist" element={<PlaylistMap />} />
-          </Route>
+          <Route path="browse" element={<Browse />} />
           <Route path="profile" element={<Profile user={user} />} />
         </Routes>
       </UserContext.Provider>

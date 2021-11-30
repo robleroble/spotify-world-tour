@@ -14,6 +14,10 @@
         Removed model files (I may just put all this logic in the routes file...)
 
 11/29:
+    Restructure folders
+
+
+
     React App - Change styling for 2/3 map, 1/3 music stuff
     Clean up Map.js file and try to put "get music" func elsewhere
 

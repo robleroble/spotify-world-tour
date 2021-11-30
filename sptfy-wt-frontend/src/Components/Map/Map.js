@@ -7,13 +7,12 @@ import {
 } from "./MapStyles.js";
 import "./Map.css";
 import axios from "axios";
-import UserContext from "../UserContext";
-import SpotifyWidget from "../SpotifyWidget";
+import UserContext from "../../Context/UserContext";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
 
-function MapDevTo() {
+function Map() {
   const [lng, setLng] = useState(-34.5034);
   const [lat, setLat] = useState(16.0569);
   const [zoom, setZoom] = useState(2.27);
@@ -102,9 +101,8 @@ function MapDevTo() {
         ref={mapContainer}
         className="map-container"
       ></div>
-      <SpotifyWidget uri={albums} />;
     </div>
   );
 }
 
-export default MapDevTo;
+export default Map;
