@@ -1,0 +1,11 @@
+.Browse {
+  display: flex;
+  flex-direction: row;
+}
+
+.mapContainer {
+  width: 67%;
+}
+.musicContainer {
+  width: 33%;
+}

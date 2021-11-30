@@ -49,7 +49,9 @@ function NavBar({ logout }) {
 
   return (
     <Navbar className="d-flex justify-content-between mw-100">
-      <NavbarBrand className="ms-4 navbar-text">Spotify World Tour</NavbarBrand>
+      <NavbarBrand className="ms-4 navbar-text">
+        <Link to="browse">Spotify World Tour</Link>
+      </NavbarBrand>
       <Nav>{user ? loggedInNav() : loggedOutNav()}</Nav>
     </Navbar>
   );

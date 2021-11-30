@@ -15,10 +15,10 @@
 
 11/29:
     Restructure folders
+    Tweak browse page to be 2/3 map, 1/3 music player/options
 
 
 
-    React App - Change styling for 2/3 map, 1/3 music stuff
     Clean up Map.js file and try to put "get music" func elsewhere
 
 
