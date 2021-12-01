@@ -8,15 +8,15 @@ import {
 import "./Map.css";
 import axios from "axios";
 import UserContext from "../../Context/UserContext";
+import SWTApi from "../../API/SWTApi";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
 
-function Map() {
+function Map({ selectCountry }) {
   const [lng, setLng] = useState(-34.5034);
   const [lat, setLat] = useState(16.0569);
   const [zoom, setZoom] = useState(2.27);
-  const [selectedCountry, setSelectedCountry] = useState("BR");
 
   const mapContainer = useRef("");
   const map = useRef(null);
@@ -24,22 +24,12 @@ function Map() {
 
   const [albums, setAlbums] = useState(null);
 
-  async function getAlbum() {
-    console.log("get album async func");
-    console.log(selectedCountry);
-    let albums = await axios({
-      url: "http://localhost:3000/music/get-album",
-      method: "post",
-      data: {
-        country: selectedCountry,
-        accessToken,
-      },
-    });
-    console.log(albums.data.albums.albums.items[0].uri);
-    let albumUri = albums.data.albums.albums.items[0].uri;
-    setAlbums(albumUri);
-    return albums;
-  }
+  // async function getAlbum() {
+  //   let music = SWTApi.getAlbum(accessToken, selectedCountry);
+  //   console.log(music);
+  //   setAlbums(music);
+  //   return albums;
+  // }
 
   /** Map Initialization on component mount */
   // adds clear layer to map
@@ -69,7 +59,7 @@ function Map() {
         "visible"
       );
       let country = e.features[0].properties.iso_3166_1;
-      setSelectedCountry(country);
+      selectCountry(country);
 
       map.current.setFilter("selected-country", ["==", "iso_3166_1", country]);
 
@@ -97,7 +87,7 @@ function Map() {
   return (
     <div className="App">
       <div
-        onClick={getAlbum}
+        // onClick={getAlbum}
         ref={mapContainer}
         className="map-container"
       ></div>

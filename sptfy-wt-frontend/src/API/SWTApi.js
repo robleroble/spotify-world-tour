@@ -3,12 +3,8 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
 
 class SWTApi {
-  static ccToken;
-  static userToken;
-
   static async request(endpoint, data = {}, method = "get") {
     const url = `${BASE_URL}/${endpoint}`;
-    // const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = method === "get" ? data : {};
 
     try {
@@ -28,6 +24,18 @@ class SWTApi {
     // console.log("SWTApi");
     // console.log(res);
     return res;
+  }
+
+  static async getAlbum(accessToken, country) {
+    const url = `${BASE_URL}/music/get-album`;
+    const method = "post";
+    const data = {
+      country,
+      accessToken,
+    };
+    let res = await axios({ url, method, data });
+    // console.log(res.data.albums.albums);
+    return res.data.albums.albums;
   }
 }
 

@@ -17,14 +17,19 @@
     Restructure folders
     Tweak browse page to be 2/3 map, 1/3 music player/options
 
+11/30:
+    Music Context? store music info in context when in a particular country
+
 
 
     Clean up Map.js file and try to put "get music" func elsewhere
+        Need better logic for onClick and getMusic function
+            (EG: clicking on ocean fails, re-clicking country should not re-trigger API call, etc)
 
 
 
 ToDo:
-    Clean up express app (lots of unneccessary code)
+    XXX - Clean up express app (lots of unneccessary code)
     Refactor spotify login fetch function to async await
     Get unneccessary react functions out of child components (getAlbum)
     Styling and funcionality to put spotify widget on screen
