@@ -8,6 +8,17 @@ nav {
   color: whitesmoke;
 }
 
+.navbar-profile-img {
+  height: 50px;
+  border-radius: 50%;
+}
+
+.navbar-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .navbar-text:hover {
   color: rgb(172, 173, 172);
 }

@@ -11,13 +11,21 @@ function NavBar({ logout }) {
     window.open("http://localhost:3000/auth/spotify", "_self");
   };
   const { user } = useContext(UserContext);
+  console.log(user);
 
   function loggedInNav() {
     return (
       <>
         <NavItem>
           <NavLink className="navbar-text">
-            <Link to="profile">Profile</Link>
+            <Link className="navbar-profile" to="profile">
+              <img
+                className="navbar-profile-img"
+                src={user.photos[0].value}
+                alt="profile picture"
+              />
+              <p>{user.displayName}</p>
+            </Link>
           </NavLink>
         </NavItem>
         <NavItem>
