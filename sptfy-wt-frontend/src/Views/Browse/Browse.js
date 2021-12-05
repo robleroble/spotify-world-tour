@@ -8,7 +8,7 @@ import UserContext from "../../Context/UserContext";
 function Browse() {
   const [music, setMusic] = useState(null);
   const [country, setCountry] = useState(null);
-  const { accessToken } = useContext(UserContext);
+  const { accessToken, ccToken, user } = useContext(UserContext);
 
   // logic - when country (in state) changes, call for new music
   async function getMusic(country, accessToken) {
@@ -18,8 +18,14 @@ function Browse() {
   }
 
   async function selectCountry(countryCode) {
+    let token;
+    if (user === null) {
+      token = ccToken;
+    } else {
+      token = accessToken;
+    }
     if (countryCode !== country) {
-      await getMusic(countryCode, accessToken);
+      await getMusic(countryCode, token);
       setCountry(countryCode);
     }
   }

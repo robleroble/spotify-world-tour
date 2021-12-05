@@ -12,10 +12,15 @@ passport.use(
       clientID: SPOTIFY_CLIENT_ID,
       clientSecret: SPOTIFY_CLIENT_SECRET,
       callbackURL: redirect_URI,
+      passReqToCallback: true,
     },
-    function (accessToken, refreshToken, expires_in, profile, done) {
+    function (req, accessToken, refreshToken, expires_in, profile, done) {
       // janky way to add tokens to my user/profile object
+      // req.session.accessToken = accessToken;
+      // req.session.refreshToken = refreshToken;
+      // console.log(req.session);
       let user = { ...profile, accessToken, refreshToken };
+      // let session = { accessToken, refreshToken };
       return done(null, user);
     }
   )

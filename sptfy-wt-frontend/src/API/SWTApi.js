@@ -17,13 +17,14 @@ class SWTApi {
   }
 
   static async getCCToken() {
-    const url = `http://localhost:3000/music`;
-    const method = "POST";
+    const url = `${BASE_URL}/auth/client-credentials`;
+    const method = "GET";
     let res = await axios({ url, method });
     // let res = await this.request("music");
-    // console.log("SWTApi");
+    console.log("cctoken");
     // console.log(res);
-    return res;
+    const token = res.data.clientCredentialsToken.access_token;
+    return token;
   }
 
   static async getAlbum(accessToken, country) {

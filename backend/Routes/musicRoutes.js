@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const SpotifyApiCaller = require("../SpotifyAPICaller");
+const passport = require("passport");
 
 // need to transfer this to auth routes
 router.post("/", async function (req, res, next) {
@@ -17,6 +18,8 @@ router.post("/", async function (req, res, next) {
 
 router.post("/get-album", async function (req, res, next) {
   try {
+    console.log("req.user");
+    console.log(req.user);
     const { country, accessToken } = req.body;
 
     const offset = Math.floor(Math.random() * 20) + 1;

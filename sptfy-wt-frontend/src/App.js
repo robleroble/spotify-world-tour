@@ -12,10 +12,18 @@ import Browse from "./Views/Browse/Browse";
 
 // Context to store user/profile info
 import UserContext from "./Context/UserContext";
+import SWTApi from "./API/SWTApi";
 
 function App() {
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
+  const [ccToken, setCCToken] = useState(null);
+
+  async function getCCToken() {
+    const res = await SWTApi.getCCToken();
+    setCCToken(res);
+    console.log(res);
+  }
 
   useEffect(() => {
     const getUser = () => {
@@ -40,11 +48,14 @@ function App() {
           console.log(err);
         });
     };
+
+    getCCToken();
     getUser();
   }, []);
 
   async function logout() {
     setUser(null);
+    setAccessToken(null);
     await axios({
       url: "http://localhost:3000/auth/logout",
       method: "get",
@@ -53,7 +64,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ user, setUser, accessToken }}>
+      <UserContext.Provider value={{ user, setUser, accessToken, ccToken }}>
         <NavBar logout={logout} />
         <Routes>
           <Route index element={<Home />} />

@@ -1,10 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const SpotifyApiCaller = require("../SpotifyAPICaller");
+
+router.get("/client-credentials", async function (req, res) {
+  try {
+    const clientCredentialsToken =
+      await SpotifyApiCaller.getClientCredentialsToken();
+    return res.json({ clientCredentialsToken });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
     // let user = req.user;
+    // console.log("req.session");
+    // console.log(req.session);
+    // console.log(req.user);
+    // req.session.accessToken
+    req.session.accessToken = req.user.accessToken;
+    req.session.refreshToken - req.user.refreshToken;
     res.status(200).json({
       success: true,
       message: "successful",
@@ -23,6 +40,7 @@ router.get("/login/failed", (req, res) => {
 
 router.get("/logout", (req, res) => {
   console.log("logged out");
+  req.session.destroy();
   req.logout();
 });
 

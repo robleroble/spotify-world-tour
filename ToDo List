@@ -1,39 +1,39 @@
 11/27:
-    Navbar
-        Add logout function
-        Different navbar for logged in/out users
-    Context API
-        Store user info in context when logging in thru Spotify
-        *also put access_token here for the time being
+Navbar
+Add logout function
+Different navbar for logged in/out users
+Context API
+Store user info in context when logging in thru Spotify
+\*also put access_token here for the time being
 
 11/28:
-    Spotify API calls
-        Got map onClick function synced with backend to retrieve albums from Spotify's API
-    Clean up express backend
-        Removed old funcs I used for testing API
-        Removed model files (I may just put all this logic in the routes file...)
+Spotify API calls
+Got map onClick function synced with backend to retrieve albums from Spotify's API
+Clean up express backend
+Removed old funcs I used for testing API
+Removed model files (I may just put all this logic in the routes file...)
 
 11/29:
-    Restructure folders
-    Tweak browse page to be 2/3 map, 1/3 music player/options
+Restructure folders
+Tweak browse page to be 2/3 map, 1/3 music player/options
 
 11/30:
-    Music Context? store music info in context when in a particular country
+Moved getMusic func further up in the browse page; it works!
+Clicking now makes API calls to put music in state.
 
+12/1:
+Work on a home page, styling for navbar, music section
 
-
-    Clean up Map.js file and try to put "get music" func elsewhere
-        Need better logic for onClick and getMusic function
-            (EG: clicking on ocean fails, re-clicking country should not re-trigger API call, etc)
-
-
+12/4:
+Goals:
+Store access token in session (not in context) ---- can't figure this out
+Create home page w/button to continue as anonymous user
 
 ToDo:
-    XXX - Clean up express app (lots of unneccessary code)
-    Refactor spotify login fetch function to async await
-    Get unneccessary react functions out of child components (getAlbum)
-    Styling and funcionality to put spotify widget on screen
-    
+Refactor spotify login fetch function to async await
+Get unneccessary react functions out of child components (getAlbum)
+Styling and funcionality to put spotify widget on screen
+
     When logged-in user functions complete, add client credentials auth route for non-spotify users
 
     For logged in users - creating playlists?
