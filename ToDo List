@@ -27,6 +27,21 @@ Work on a home page, styling for navbar, music section
 12/4:
 Goals:
 Store access token in session (not in context) ---- can't figure this out
+Added client credentials auth flow
+Profile nav section (username and image) --still need styling
+
+12/5:
+Styling for:
+
+- Home page
+  -- background image
+  -- buttons to login or continue anonymously
+  -- basic description of app
+- Navbar
+- Footer
+- Music sidebar
+- About page???
+
 Create home page w/button to continue as anonymous user
 
 ToDo:

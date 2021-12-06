@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Navbar, NavbarBrand, NavLink, Nav, NavItem } from "reactstrap";
 import UserContext from "../../Context/UserContext";
 
 import "./NavBar.css";
@@ -11,34 +10,32 @@ function NavBar({ logout }) {
     window.open("http://localhost:3000/auth/spotify", "_self");
   };
   const { user } = useContext(UserContext);
-  console.log(user);
 
   function loggedInNav() {
     return (
       <>
-        <NavItem>
-          <NavLink className="navbar-text">
-            <Link className="navbar-profile" to="profile">
-              <img
-                className="navbar-profile-img"
-                src={user.photos[0].value}
-                alt="profile picture"
-              />
-              <p>{user.displayName}</p>
-            </Link>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
+        <li className="nav-item">
+          <Link to="profile" className="nav-link nav-profile">
+            <img
+              className="navbar-profile-img"
+              src={user.photos[0].value}
+              alt="spotify profile"
+            />
+            {user.displayName}
+          </Link>
+        </li>
+        <li className="nav-item">
+          <a
+            href="/#"
             onClick={() => {
               logout();
               navigate("/");
             }}
-            className="navbar-text"
+            className="nav-link"
           >
             Logout
-          </NavLink>
-        </NavItem>
+          </a>
+        </li>
       </>
     );
   }
@@ -46,22 +43,29 @@ function NavBar({ logout }) {
   function loggedOutNav() {
     return (
       <>
-        <NavItem>
-          <NavLink onClick={spotifyLogin} className="navbar-text">
+        <li className="nav-item">
+          <a href="/#" onClick={spotifyLogin} className="nav-link">
             Login
-          </NavLink>
-        </NavItem>
+          </a>
+        </li>
       </>
     );
   }
 
   return (
-    <Navbar className="d-flex justify-content-between mw-100">
-      <NavbarBrand className="ms-4 navbar-text">
-        <Link to="browse">Spotify World Tour</Link>
-      </NavbarBrand>
-      <Nav>{user ? loggedInNav() : loggedOutNav()}</Nav>
-    </Navbar>
+    <nav className="nav">
+      <Link to="/" className="nav-link nav-logo">
+        Spotify World Tour
+      </Link>
+      <ul className="nav-items">
+        <li className="nav-item">
+          <Link to="browse" className="nav-link nav-profile">
+            Explore Music
+          </Link>
+        </li>
+        {user ? loggedInNav() : loggedOutNav()}
+      </ul>
+    </nav>
   );
 }
 
