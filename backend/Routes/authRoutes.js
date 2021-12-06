@@ -57,7 +57,7 @@ router.get(
     failureRedirect: "/login/failed",
   }),
   function (req, res) {
-    res.redirect("http://localhost:3001/");
+    res.redirect("http://localhost:3001/browse");
   }
 );
 
