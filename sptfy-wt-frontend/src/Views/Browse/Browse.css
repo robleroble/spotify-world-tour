@@ -8,4 +8,22 @@
 }
 .musicContainer {
   width: 33%;
+  background-color: black;
+}
+
+.musicHelp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.musicHelp-text {
+  margin: 30px;
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: #1db954;
+}
+
+.countryInfo {
+  color: white;
+  display: flex;
 }

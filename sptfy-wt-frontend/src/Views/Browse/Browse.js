@@ -30,16 +30,34 @@ function Browse() {
     }
   }
 
+  function musicHelp() {
+    return (
+      <div className="musicHelp-container">
+        <h3 className="musicHelp-text">
+          Navigate around the map and click a country to start listening!
+        </h3>
+      </div>
+    );
+  }
+
+  function musicInfo() {
+    return (
+      <div className="musicInfo">
+        <div className="countryInfo">
+          <h2>COUNTRY</h2>
+          <button>Get more music!</button>
+        </div>
+        <MusicInfo music={music} />
+      </div>
+    );
+  }
+
   return (
     <div className="Browse">
       <div className="mapContainer">
         <Map selectCountry={selectCountry} />
       </div>
-      <div className="musicContainer">
-        <MusicInfo music={music} />
-        <h1>Music container</h1>
-        <p>widget, artist info, country name, etc</p>
-      </div>
+      <div className="musicContainer">{music ? musicInfo() : musicHelp()}</div>
     </div>
   );
 }

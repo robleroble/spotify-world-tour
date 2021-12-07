@@ -38,11 +38,11 @@ Styling for:
   -- buttons to login or continue anonymously
   -- basic description of app
 - Navbar
-- Footer
-- Music sidebar
-- About page???
 
-Create home page w/button to continue as anonymous user
+12/6:
+Styling for:
+
+- Music sidebar
 
 ToDo:
 Refactor spotify login fetch function to async await

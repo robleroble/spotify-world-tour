@@ -1,0 +1,31 @@
+.musicInfo {
+  margin-left: 5%;
+}
+
+.musicInfo-info {
+  display: flex;
+}
+.musicInfo-album-artist {
+  /* width: 75%; */
+  align-self: stretch;
+  margin-right: 5%;
+}
+
+.musicInfo-img-container {
+  max-width: 35%;
+  align-self: center;
+}
+
+.musicInfo-img {
+  width: 100%;
+}
+
+p {
+  margin: 0;
+  color: rgba(245, 245, 245, 0.774);
+}
+
+h3 {
+  margin: 0;
+  color: white;
+}
