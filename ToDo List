@@ -42,7 +42,11 @@ Styling for:
 12/6:
 Styling for:
 
-- Music sidebar
+- Music sidebar (still need to re-do spotify API call to get individual songs)
+
+12/7:
+Create options bar to change API calls (new release vs genre, etc)
+---Spotify's API page was down on 12/7
 
 ToDo:
 Refactor spotify login fetch function to async await

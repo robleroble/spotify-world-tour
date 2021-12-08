@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Map from "../../Components/Map/Map";
 import MusicInfo from "../../Components/MusicInfo/MusicInfo";
+import SpotifyToolbar from "../../Components/SpotifyToolbar/SpotifyToolbar";
 import "./Browse.css";
 import SWTApi from "../../API/SWTApi";
 import UserContext from "../../Context/UserContext";
@@ -55,6 +56,7 @@ function Browse() {
   return (
     <div className="Browse">
       <div className="mapContainer">
+        <SpotifyToolbar />
         <Map selectCountry={selectCountry} />
       </div>
       <div className="musicContainer">{music ? musicInfo() : musicHelp()}</div>

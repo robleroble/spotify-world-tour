@@ -19,7 +19,7 @@ function MusicInfo({ music }) {
   function yesMusic() {
     return (
       <>
-        <div>
+        <div className="musicInfo">
           <div className="musicInfo-info">
             <div className="musicInfo-album-artist">
               <div>
