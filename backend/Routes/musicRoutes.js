@@ -18,16 +18,23 @@ router.post("/", async function (req, res, next) {
 
 router.post("/get-album", async function (req, res, next) {
   try {
-    console.log("req.user");
-    console.log(req.user);
     const { country, accessToken } = req.body;
 
     const offset = Math.floor(Math.random() * 20) + 1;
-    let albums = await SpotifyApiCaller.getAlbumNewReleases(
+    const albums = await SpotifyApiCaller.getAlbumNewReleases(
       country,
       offset,
       accessToken
     );
+    // console.log(albums.albums.items[0].id);
+
+    const albumId = albums.albums.items[0].id;
+    // const albumId = "39g3CsFBc9YK9Z6AbvvkgF";
+    // console.log("album id");
+    // console.log(albumId);
+    const songs = await SpotifyApiCaller.getAlbumTracks(albumId, accessToken);
+    // console.log(songs);
+
     return res.json({ albums });
   } catch (err) {
     return next(err);

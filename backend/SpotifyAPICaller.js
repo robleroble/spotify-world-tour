@@ -18,7 +18,6 @@ class SpotifyApiCaller {
     const headers = {
       Authorization: `Basic ${BASE_64_CLIENT_CREDENTIALS}`,
     };
-    console.log(url);
     return (await axios({ url, method, data, headers })).data;
   }
 
@@ -28,8 +27,19 @@ class SpotifyApiCaller {
     const headers = {
       Authorization: `Bearer ${accessToken}`,
     };
-    console.log(url);
     return (await axios({ url, method, headers })).data;
+  }
+
+  static async getAlbumTracks(albumId, accessToken) {
+    const url = `${BASE_URL}/albums/${albumId}/tracks`;
+    console.log(url);
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    console.log(res);
+    return res;
   }
 }
 
