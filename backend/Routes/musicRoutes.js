@@ -33,7 +33,7 @@ router.post("/get-album", async function (req, res, next) {
     // console.log("album id");
     // console.log(albumId);
     const songs = await SpotifyApiCaller.getAlbumTracks(albumId, accessToken);
-    // console.log(songs);
+    console.log(songs);
 
     return res.json({ albums });
   } catch (err) {

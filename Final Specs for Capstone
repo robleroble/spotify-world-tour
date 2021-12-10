@@ -1,0 +1,6 @@
+App will only focus on browsing music from Spotify with three major options:
+    1. Browse new releases
+    2. Browse featured playlists
+    3. Browse playlists with genre type
+All three of these API endpoints allow for selecting a parameter to select music related to a country
+

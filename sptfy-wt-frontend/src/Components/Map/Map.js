@@ -1,14 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import mapboxgl from "mapbox-gl";
-import {
-  clearMapLayer,
-  selectedCountryLayer,
-  worldviewFilter,
-} from "./MapStyles.js";
+
+import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import { clearMapLayer, selectedCountryLayer } from "./MapStyles.js";
 import "./Map.css";
-import axios from "axios";
 import UserContext from "../../Context/UserContext";
-import SWTApi from "../../API/SWTApi";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
@@ -21,15 +16,6 @@ function Map({ selectCountry }) {
   const mapContainer = useRef("");
   const map = useRef(null);
   const { accessToken } = useContext(UserContext);
-
-  const [albums, setAlbums] = useState(null);
-
-  // async function getAlbum() {
-  //   let music = SWTApi.getAlbum(accessToken, selectedCountry);
-  //   console.log(music);
-  //   setAlbums(music);
-  //   return albums;
-  // }
 
   /** Map Initialization on component mount */
   // adds clear layer to map
@@ -84,15 +70,7 @@ function Map({ selectCountry }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div className="App">
-      <div
-        // onClick={getAlbum}
-        ref={mapContainer}
-        className="map-container"
-      ></div>
-    </div>
-  );
+  return <div ref={mapContainer} className="map-container"></div>;
 }
 
 export default Map;

@@ -36,6 +36,7 @@ function MusicInfo({ music }) {
               <img
                 className="musicInfo-img"
                 src={music.items[0].images[1].url}
+                alt="album cover art"
               />
             </div>
           </div>

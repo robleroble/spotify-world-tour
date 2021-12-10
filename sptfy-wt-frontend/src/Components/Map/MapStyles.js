@@ -1,6 +1,3 @@
-// Spotify green #1DB954
-// Black #191414
-
 const worldviewFilter =
   // [
   //     "any",
@@ -51,4 +48,4 @@ const selectedCountryLayer = {
   },
 };
 
-export { clearMapLayer, selectedCountryLayer, worldviewFilter };
+export { clearMapLayer, selectedCountryLayer };

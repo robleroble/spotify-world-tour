@@ -51,6 +51,9 @@ Create options toolbar component to change API calls (new release vs genre, etc)
 12/8&9&10:
 Revise API call to get individual songs for album
 
+12/9:
+Try to figure out mapbox errors
+
 ToDo:
 Refactor spotify login fetch function to async await
 Get unneccessary react functions out of child components (getAlbum)

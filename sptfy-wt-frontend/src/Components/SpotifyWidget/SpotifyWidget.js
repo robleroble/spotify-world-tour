@@ -13,6 +13,7 @@ const SpotifyWidget = ({ id }) => {
         height="380"
         frameborder="0"
         allow="encrypted-media"
+        title="spotify widget"
       ></iframe>
     </div>
   );

@@ -38,7 +38,7 @@ class SpotifyApiCaller {
       Authorization: `Bearer ${accessToken}`,
     };
     const res = (await axios({ url, method, headers })).data;
-    console.log(res);
+    // console.log(res);
     return res;
   }
 }
