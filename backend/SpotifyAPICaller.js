@@ -41,6 +41,37 @@ class SpotifyApiCaller {
     // console.log(res);
     return res;
   }
+
+  static async getFeaturedPlaylists(country, offset, accessToken) {
+    const url = `${BASE_URL}/browse/featured-playlists?country=${country}&offset=${offset}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    return res;
+  }
+
+  static async getBrowseCategories(country = null, accessToken) {
+    const url = `${BASE_URL}/browse/categories`;
+    const finalUrl = country === null ? url : url + `?country=${country}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ finalUrl, method, headers })).data;
+    return res;
+  }
+
+  static async getPlaylistByCategory(country, categoryId, offset, accessToken) {
+    const url = `${BASE_URL}/browse/categories/${categoryId}/playlists?country=${country}&offset=${offset}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    return res;
+  }
 }
 
 module.exports = SpotifyApiCaller;
