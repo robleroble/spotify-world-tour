@@ -3,7 +3,7 @@ import React from "react";
 const SpotifyWidget = ({ id }) => {
   //   const uriText = uri.split(":")[1];
   const widgetUri = "https://open.spotify.com/embed/album/" + id;
-  console.log(widgetUri);
+  // console.log(widgetUri);
 
   return (
     <div>

@@ -28,6 +28,16 @@
   color: #212121;
 }
 
+.SpotifyToolbar-selected-btn {
+  background-color: #212121;
+  color: white;
+}
+
+.SpotifyToolbar-selected-btn:hover {
+  background-color: #212121;
+  color: white;
+}
+
 .btn-left {
   border-start-start-radius: 25px;
   border-end-start-radius: 25px;

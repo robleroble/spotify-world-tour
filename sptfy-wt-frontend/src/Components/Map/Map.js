@@ -1,9 +1,8 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import { clearMapLayer, selectedCountryLayer } from "./MapStyles.js";
 import "./Map.css";
-import UserContext from "../../Context/UserContext";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
@@ -15,7 +14,6 @@ function Map({ selectCountry }) {
 
   const mapContainer = useRef("");
   const map = useRef(null);
-  const { accessToken } = useContext(UserContext);
 
   /** Map Initialization on component mount */
   // adds clear layer to map
@@ -37,7 +35,7 @@ function Map({ selectCountry }) {
 
     // highlights clicked on countries
     map.current.on("click", "country-boundaries", function (e) {
-      console.log(e.features[0].properties.iso_3166_1);
+      // console.log(e.features[0].properties.iso_3166_1);
 
       map.current.setLayoutProperty(
         "selected-country",

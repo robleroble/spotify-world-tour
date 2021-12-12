@@ -3,8 +3,8 @@ import SpotifyWidget from "../SpotifyWidget/SpotifyWidget";
 import "./MusicInfo.css";
 
 function MusicInfo({ music }) {
-  console.log("Music info");
-  console.log(music);
+  // console.log("Music info");
+  // console.log(music);
 
   function nullMusic() {
     return (

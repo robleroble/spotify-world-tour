@@ -9,13 +9,17 @@ import UserContext from "../../Context/UserContext";
 function Browse() {
   const [music, setMusic] = useState(null);
   const [country, setCountry] = useState(null);
+  const [spotifyToolbarCategory, setSpotifyToolbarCategory] =
+    useState("New Releases");
   const { accessToken, ccToken, user } = useContext(UserContext);
+
+  console.log(spotifyToolbarCategory);
 
   // logic - when country (in state) changes, call for new music
   async function getMusic(country, accessToken) {
     let music = await SWTApi.getAlbum(accessToken, country);
     setMusic(music);
-    console.log(music);
+    // console.log(music);
   }
 
   async function selectCountry(countryCode) {
@@ -31,6 +35,11 @@ function Browse() {
     }
   }
 
+  function changeMusicCategory(musicCategory) {
+    setSpotifyToolbarCategory(musicCategory);
+  }
+
+  // When a country is not selected, sidebar has helpful info
   function musicHelp() {
     return (
       <div className="musicHelp-container">
@@ -41,6 +50,7 @@ function Browse() {
     );
   }
 
+  // When country is selected, spotify widget and music info displayed
   function musicInfo() {
     return (
       <div className="musicInfo">
@@ -56,7 +66,10 @@ function Browse() {
   return (
     <div className="Browse">
       <div className="mapContainer">
-        <SpotifyToolbar />
+        <SpotifyToolbar
+          spotifyToolbarCategory={spotifyToolbarCategory}
+          changeMusicCategory={changeMusicCategory}
+        />
         <Map selectCountry={selectCountry} />
       </div>
       <div className="musicContainer">{music ? musicInfo() : musicHelp()}</div>

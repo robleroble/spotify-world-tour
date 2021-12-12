@@ -12,6 +12,8 @@ import Browse from "./Views/Browse/Browse";
 
 // Context to store user/profile info
 import UserContext from "./Context/UserContext";
+
+// API caller
 import SWTApi from "./API/SWTApi";
 
 function App() {
@@ -22,7 +24,6 @@ function App() {
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
     setCCToken(res);
-    console.log(res);
   }
 
   useEffect(() => {
