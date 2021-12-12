@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const SpotifyApiCaller = require("../SpotifyAPICaller");
-const passport = require("passport");
 
 // need to transfer this to auth routes
 router.post("/", async function (req, res, next) {
   const q = req.query;
   try {
-    // pass query/body args to model to get music
     const ccToken = await SpotifyApiCaller.getClientCredentialsToken();
     return res.json({ ccToken });
   } catch (err) {
@@ -26,16 +24,52 @@ router.post("/get-album", async function (req, res, next) {
       offset,
       accessToken
     );
-    // console.log(albums.albums.items[0].id);
-
-    const albumId = albums.albums.items[0].id;
-    // const albumId = "39g3CsFBc9YK9Z6AbvvkgF";
-    // console.log("album id");
-    // console.log(albumId);
-    const songs = await SpotifyApiCaller.getAlbumTracks(albumId, accessToken);
-    console.log(songs);
-
+    // const albumId = albums.albums.items[0].id;
     return res.json({ albums });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.post("/get-featured-playlists", async function (req, res, next) {
+  try {
+    const { country, accessToken } = req.body;
+    const offset = Math.floor(Math.random() * 20) + 1;
+    const playlists = await SpotifyApiCaller.getFeaturedPlaylists(
+      country,
+      offset,
+      accessToken
+    );
+    return res.json({ playlists });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.post("/get-playlist-categories", async function (req, res, next) {
+  try {
+    const { country, accessToken } = req.body;
+    const categories = await SpotifyApiCaller.getBrowseCategories(
+      country,
+      accessToken
+    );
+    return res.json({ categories });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.post("/get-playlist", async function (req, res, next) {
+  try {
+    const { country, categoryId, accessToken } = req.body;
+    const offset = Math.floor(Math.random() * 20) + 1;
+    const playlists = await SpotifyApiCaller.getPlaylistByCategory(
+      country,
+      categoryId,
+      offset,
+      accessToken
+    );
+    return res.json({ playlists });
   } catch (err) {
     return next(err);
   }
