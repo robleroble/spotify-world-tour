@@ -9,9 +9,8 @@ const SpotifyWidget = ({ type, id }) => {
     <div>
       <iframe
         src={widgetUri}
-        width="300"
-        height="380"
-        frameBorder="0"
+        width="100%"
+        height="500px"
         allow="encrypted-media"
         title="spotify widget"
       ></iframe>

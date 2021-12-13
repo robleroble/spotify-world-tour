@@ -18,7 +18,6 @@
   align-items: center;
 }
 .musicHelp-text {
-  /* margin: 30px; */
   color: white;
   text-decoration: underline;
   text-decoration-color: #1db954;
@@ -27,4 +26,37 @@
 .countryInfo {
   color: white;
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 5%;
+}
+
+.countryTitle {
+  text-decoration: underline;
+  text-decoration-color: #1db954;
+}
+
+.shuffle-btn {
+  height: 50px;
+  border-color: #1db954;
+  border-style: solid;
+  border-width: 3.5px;
+  border-radius: 25px;
+  color: #212121;
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: #e6e6e6;
+  text-decoration: underline;
+  text-decoration-color: #1db954;
+}
+
+.shuffle-btn:hover {
+  background-color: white;
+  color: #212121;
+}
+
+.musicInfo-hr {
+  color: #1db954;
+  border: 3px;
+  /* height: 10px; */
 }

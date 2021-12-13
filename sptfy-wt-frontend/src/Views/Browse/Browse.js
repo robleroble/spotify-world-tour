@@ -51,9 +51,10 @@ function Browse() {
     return (
       <div className="musicInfo">
         <div className="countryInfo">
-          <h2 className="countryTitle">{country.name}</h2>
-          <button>Shuffle {music.type}s!</button>
+          <h1 className="countryTitle">{country.name}</h1>
+          <button className="shuffle-btn">Shuffle {music.type}s!</button>
         </div>
+        <hr className="musicInfo-hr" />
         <MusicInfo music={music} />
       </div>
     );

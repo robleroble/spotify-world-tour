@@ -29,7 +29,6 @@ function MusicInfo({ music }) {
               <h3>{music.spotifyMusic.items[0].artists[0].name}</h3>
             </div>
           </div>
-
           <div className="musicInfo-img-container">
             <img
               className="musicInfo-img"
@@ -38,18 +37,20 @@ function MusicInfo({ music }) {
             />
           </div>
         </div>
+        <hr />
         <SpotifyWidget id={music.spotifyMusic.items[0].id} type="album" />
       </>
     );
   }
 
+  // Need logic to check if we get an empty list of playlists...
   function playlistInfo() {
     return (
       <>
         <div className="musicInfo-info">
           <div className="musicInfo-album-artist">
             <div>
-              <p>Album</p>
+              <p>Playlist Name</p>
               <h3>{music.spotifyMusic.playlists.playlists.items[0].name}</h3>
             </div>
             <div>
@@ -70,6 +71,7 @@ function MusicInfo({ music }) {
             />
           </div>
         </div>
+        <hr />
         <SpotifyWidget
           id={music.spotifyMusic.playlists.playlists.items[0].id}
           type="playlist"
