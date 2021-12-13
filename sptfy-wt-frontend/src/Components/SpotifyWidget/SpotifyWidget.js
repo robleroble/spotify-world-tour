@@ -1,9 +1,9 @@
 import React from "react";
 
-const SpotifyWidget = ({ id }) => {
+const SpotifyWidget = ({ type, id }) => {
   //   const uriText = uri.split(":")[1];
-  const widgetUri = "https://open.spotify.com/embed/album/" + id;
-  // console.log(widgetUri);
+  const widgetUri = "https://open.spotify.com/embed/" + type + "/" + id;
+  console.log(widgetUri);
 
   return (
     <div>
@@ -11,7 +11,7 @@ const SpotifyWidget = ({ id }) => {
         src={widgetUri}
         width="300"
         height="380"
-        frameborder="0"
+        frameBorder="0"
         allow="encrypted-media"
         title="spotify widget"
       ></iframe>

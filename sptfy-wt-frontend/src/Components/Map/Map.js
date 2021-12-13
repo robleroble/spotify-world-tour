@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import BrowseContext from "../../Context/BrowseContext";
 
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import { clearMapLayer, selectedCountryLayer } from "./MapStyles.js";
@@ -7,13 +8,15 @@ import "./Map.css";
 mapboxgl.accessToken =
   "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
 
-function Map({ selectCountry }) {
+function Map() {
   const [lng, setLng] = useState(-34.5034);
   const [lat, setLat] = useState(16.0569);
   const [zoom, setZoom] = useState(2.27);
 
   const mapContainer = useRef("");
   const map = useRef(null);
+
+  const { setCountry } = useContext(BrowseContext);
 
   /** Map Initialization on component mount */
   // adds clear layer to map
@@ -42,10 +45,18 @@ function Map({ selectCountry }) {
         "visibility",
         "visible"
       );
-      let country = e.features[0].properties.iso_3166_1;
-      selectCountry(country);
+      let countryCode = e.features[0].properties.iso_3166_1;
+      let countryName = e.features[0].properties.name_en;
+      setCountry({
+        code: countryCode,
+        name: countryName,
+      });
 
-      map.current.setFilter("selected-country", ["==", "iso_3166_1", country]);
+      map.current.setFilter("selected-country", [
+        "==",
+        "iso_3166_1",
+        countryCode,
+      ]);
 
       // map centers on click event
       map.current.flyTo({

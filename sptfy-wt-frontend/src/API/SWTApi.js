@@ -28,6 +28,7 @@ class SWTApi {
   }
 
   static async getAlbum(accessToken, country) {
+    console.log("API new releases");
     const url = `${BASE_URL}/music/get-album`;
     const method = "post";
     const data = {
@@ -35,8 +36,21 @@ class SWTApi {
       accessToken,
     };
     let res = await axios({ url, method, data });
-    // console.log(res.data.albums.albums);
+    console.log(res.data);
     return res.data.albums.albums;
+  }
+
+  static async getFeaturedPlaylist(accessToken, country) {
+    console.log("API featured playlists");
+    const url = `${BASE_URL}/music/get-featured-playlists`;
+    const method = "POST";
+    const data = {
+      country,
+      accessToken,
+    };
+    let res = await axios({ url, method, data });
+    console.log(res.data);
+    return res.data;
   }
 }
 

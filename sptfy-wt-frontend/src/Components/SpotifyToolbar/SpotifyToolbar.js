@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SpotifyToolbar.css";
+import BrowseContext from "../../Context/BrowseContext";
 
-function SpotifyToolbar({ spotifyToolbarCategory, changeMusicCategory }) {
-  //
+function SpotifyToolbar() {
+  const { spotifyToolbarCategory, setSpotifyToolbarCategory } =
+    useContext(BrowseContext);
+
   function clickToChangeCategory(e) {
-    console.log(e.target);
     let btnHTML = e.target.innerHTML;
     if (spotifyToolbarCategory === btnHTML) {
       // do nothing
       return;
     } else {
-      changeMusicCategory(btnHTML);
+      setSpotifyToolbarCategory(btnHTML);
+      return;
     }
   }
 

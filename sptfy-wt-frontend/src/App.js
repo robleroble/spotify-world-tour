@@ -12,6 +12,7 @@ import Browse from "./Views/Browse/Browse";
 
 // Context to store user/profile info
 import UserContext from "./Context/UserContext";
+import BrowseContext from "./Context/BrowseContext";
 
 // API caller
 import SWTApi from "./API/SWTApi";
@@ -20,6 +21,11 @@ function App() {
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [ccToken, setCCToken] = useState(null);
+  const [music, setMusic] = useState(null);
+  const [country, setCountry] = useState({ code: null, name: null });
+  const [spotifyToolbarCategory, setSpotifyToolbarCategory] =
+    useState("New Releases");
+  const [genre, setGenre] = useState(null);
 
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
@@ -66,12 +72,25 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser, accessToken, ccToken }}>
-        <NavBar logout={logout} />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="browse" element={<Browse />} />
-          <Route path="profile" element={<Profile user={user} />} />
-        </Routes>
+        <BrowseContext.Provider
+          value={{
+            country,
+            spotifyToolbarCategory,
+            setSpotifyToolbarCategory,
+            setCountry,
+            music,
+            setMusic,
+            genre,
+            setGenre,
+          }}
+        >
+          <NavBar logout={logout} />
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="browse" element={<Browse />} />
+            <Route path="profile" element={<Profile user={user} />} />
+          </Routes>
+        </BrowseContext.Provider>
       </UserContext.Provider>
     </BrowserRouter>
   );

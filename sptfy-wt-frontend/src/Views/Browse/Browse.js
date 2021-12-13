@@ -1,42 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Map from "../../Components/Map/Map";
 import MusicInfo from "../../Components/MusicInfo/MusicInfo";
 import SpotifyToolbar from "../../Components/SpotifyToolbar/SpotifyToolbar";
 import "./Browse.css";
 import SWTApi from "../../API/SWTApi";
 import UserContext from "../../Context/UserContext";
+import BrowseContext from "../../Context/BrowseContext";
 
 function Browse() {
-  const [music, setMusic] = useState(null);
-  const [country, setCountry] = useState(null);
-  const [spotifyToolbarCategory, setSpotifyToolbarCategory] =
-    useState("New Releases");
   const { accessToken, ccToken, user } = useContext(UserContext);
+  const { music, setMusic, spotifyToolbarCategory, country } =
+    useContext(BrowseContext);
 
-  console.log(spotifyToolbarCategory);
+  useEffect(() => {
+    getMusic(country.code, user);
+  }, [country, spotifyToolbarCategory]);
 
-  // logic - when country (in state) changes, call for new music
-  async function getMusic(country, accessToken) {
-    let music = await SWTApi.getAlbum(accessToken, country);
-    setMusic(music);
-    // console.log(music);
-  }
-
-  async function selectCountry(countryCode) {
+  async function getMusic(country, user) {
     let token;
     if (user === null) {
       token = ccToken;
     } else {
       token = accessToken;
     }
-    if (countryCode !== country) {
-      await getMusic(countryCode, token);
-      setCountry(countryCode);
+    let spotifyMusic;
+    let type;
+    if (spotifyToolbarCategory === "New Releases") {
+      spotifyMusic = await SWTApi.getAlbum(token, country);
+      type = "album";
+    } else if (spotifyToolbarCategory === "Featured Playlists") {
+      spotifyMusic = await SWTApi.getFeaturedPlaylist(token, country);
+      type = "playlist";
     }
-  }
-
-  function changeMusicCategory(musicCategory) {
-    setSpotifyToolbarCategory(musicCategory);
+    setMusic({ type, spotifyMusic });
   }
 
   // When a country is not selected, sidebar has helpful info
@@ -55,8 +51,8 @@ function Browse() {
     return (
       <div className="musicInfo">
         <div className="countryInfo">
-          <h2>COUNTRY</h2>
-          <button>Get more music!</button>
+          <h2 className="countryTitle">{country.name}</h2>
+          <button>Shuffle {music.type}s!</button>
         </div>
         <MusicInfo music={music} />
       </div>
@@ -66,11 +62,8 @@ function Browse() {
   return (
     <div className="Browse">
       <div className="mapContainer">
-        <SpotifyToolbar
-          spotifyToolbarCategory={spotifyToolbarCategory}
-          changeMusicCategory={changeMusicCategory}
-        />
-        <Map selectCountry={selectCountry} />
+        <SpotifyToolbar />
+        <Map />
       </div>
       <div className="musicContainer">{music ? musicInfo() : musicHelp()}</div>
     </div>

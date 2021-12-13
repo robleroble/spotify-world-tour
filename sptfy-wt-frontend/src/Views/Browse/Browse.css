@@ -9,6 +9,7 @@
 .musicContainer {
   width: 33%;
   background-color: black;
+  padding: 2%;
 }
 
 .musicHelp-container {
@@ -17,7 +18,7 @@
   align-items: center;
 }
 .musicHelp-text {
-  margin: 30px;
+  /* margin: 30px; */
   color: white;
   text-decoration: underline;
   text-decoration-color: #1db954;
