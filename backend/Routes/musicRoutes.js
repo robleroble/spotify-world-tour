@@ -22,10 +22,8 @@ router.post("/get-album", async function (req, res, next) {
 router.post("/get-featured-playlists", async function (req, res, next) {
   try {
     const { country, accessToken } = req.body;
-    const offset = Math.floor(Math.random() * 20) + 1;
     const playlists = await SpotifyApiCaller.getFeaturedPlaylists(
       country,
-      offset,
       accessToken
     );
     return res.json({ playlists });
@@ -38,9 +36,11 @@ router.post("/get-playlist-categories", async function (req, res, next) {
   try {
     const { country, accessToken } = req.body;
     const categories = await SpotifyApiCaller.getBrowseCategories(
-      country,
-      accessToken
+      accessToken,
+      country
     );
+    console.log("categories");
+    console.log(categories);
     return res.json({ categories });
   } catch (err) {
     return next(err);

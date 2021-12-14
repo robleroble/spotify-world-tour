@@ -9,12 +9,23 @@ import BrowseContext from "../../Context/BrowseContext";
 
 function Browse() {
   const { accessToken, ccToken, user } = useContext(UserContext);
-  const { music, setMusic, spotifyToolbarCategory, country } =
-    useContext(BrowseContext);
+  const {
+    music,
+    setMusic,
+    spotifyToolbarCategory,
+    country,
+    categories,
+    setCategories,
+  } = useContext(BrowseContext);
 
   useEffect(() => {
     getMusic(country.code, user);
   }, [country, spotifyToolbarCategory]);
+
+  useEffect(() => {
+    // load categories
+    getCategories(country.code);
+  }, [country]);
 
   async function getMusic(country, user) {
     let token;
@@ -33,6 +44,25 @@ function Browse() {
       type = "playlist";
     }
     setMusic({ type, spotifyMusic });
+  }
+
+  async function getCategories(country) {
+    let token;
+    if (user === null) {
+      token = ccToken;
+    } else {
+      token = accessToken;
+    }
+    let categories;
+    if (country === null) {
+      console.log("no country");
+      categories = await SWTApi.getCategories(token, country);
+    } else {
+      console.log("yes country");
+      categories = await SWTApi.getCategories(token, country);
+    }
+    console.log(categories.categories.categories.items);
+    setCategories(categories.categories.categories.items);
   }
 
   // When a country is not selected, sidebar has helpful info

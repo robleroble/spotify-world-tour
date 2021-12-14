@@ -6,13 +6,13 @@ function MusicInfo({ music }) {
   let type;
   let BASE_API_TEXT;
 
-  if (music.type === "album") {
-    type = "album";
-    BASE_API_TEXT = `music.spotifyMusic.items[0]`;
-  } else if (music.type === "playlist") {
-    type = "playlist";
-    BASE_API_TEXT = `music.spotifyMusic.playlists.playlists.items[0]`;
-  }
+  // if (music.type === "album") {
+  //   type = "album";
+  //   BASE_API_TEXT = `music.spotifyMusic.items[0]`;
+  // } else if (music.type === "playlist") {
+  //   type = "playlist";
+  //   BASE_API_TEXT = `music.spotifyMusic.playlists.playlists.items[0]`;
+  // }
 
   // if music type is an album (vs a playlist)
   function albumInfo() {
@@ -81,7 +81,7 @@ function MusicInfo({ music }) {
   }
   return (
     <div className="musicInfo">
-      {type === "album" ? albumInfo() : playlistInfo()}
+      {/* {type === "album" ? albumInfo() : playlistInfo()} */}
     </div>
   );
 }

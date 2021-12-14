@@ -49,7 +49,20 @@ class SWTApi {
       accessToken,
     };
     let res = await axios({ url, method, data });
+    console.log("playlists");
     console.log(res.data);
+    return res.data;
+  }
+
+  static async getCategories(accessToken, country) {
+    console.log("API get categories");
+    const url = `${BASE_URL}/music/get-playlist-categories`;
+    const method = "POST";
+    const data = {
+      accessToken,
+      country,
+    };
+    let res = await axios({ url, method, data });
     return res.data;
   }
 }

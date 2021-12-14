@@ -42,8 +42,8 @@ class SpotifyApiCaller {
     return res;
   }
 
-  static async getFeaturedPlaylists(country, offset, accessToken) {
-    const url = `${BASE_URL}/browse/featured-playlists?country=${country}&offset=${offset}`;
+  static async getFeaturedPlaylists(country, accessToken) {
+    const url = `${BASE_URL}/browse/featured-playlists?country=${country}`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -52,14 +52,20 @@ class SpotifyApiCaller {
     return res;
   }
 
-  static async getBrowseCategories(country = null, accessToken) {
-    const url = `${BASE_URL}/browse/categories`;
-    const finalUrl = country === null ? url : url + `?country=${country}`;
+  static async getBrowseCategories(accessToken, country) {
+    const plainUrl = `${BASE_URL}/browse/categories?limit=50`;
+    const countryUrl = `${BASE_URL}/browse/categories?limit=50&country=${country}`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${accessToken}`,
     };
-    const res = (await axios({ finalUrl, method, headers })).data;
+    let url;
+    if (country === null) {
+      url = plainUrl;
+    } else {
+      url = countryUrl;
+    }
+    const res = (await axios({ url, method, headers })).data;
     return res;
   }
 
@@ -70,6 +76,7 @@ class SpotifyApiCaller {
       Authorization: `Bearer ${accessToken}`,
     };
     const res = (await axios({ url, method, headers })).data;
+    console.log(res);
     return res;
   }
 }

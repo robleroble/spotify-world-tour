@@ -25,7 +25,8 @@ function App() {
   const [country, setCountry] = useState({ code: null, name: null });
   const [spotifyToolbarCategory, setSpotifyToolbarCategory] =
     useState("New Releases");
-  const [genre, setGenre] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [category, setCategory] = useState(null);
 
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
@@ -74,14 +75,16 @@ function App() {
       <UserContext.Provider value={{ user, setUser, accessToken, ccToken }}>
         <BrowseContext.Provider
           value={{
-            country,
             spotifyToolbarCategory,
             setSpotifyToolbarCategory,
+            country,
             setCountry,
             music,
             setMusic,
-            genre,
-            setGenre,
+            category,
+            setCategory,
+            categories,
+            setCategories,
           }}
         >
           <NavBar logout={logout} />

@@ -1,10 +1,21 @@
-.SpotifyToolbar {
+.SpotifyToolbar-container {
   z-index: 1;
   width: 55%;
   position: fixed;
   left: 6%;
   top: calc(60px + 2%);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.SpotifyToolbar {
+  /* z-index: 1;
+  width: 55%;
+  position: fixed;
+  left: 6%;
+  top: calc(60px + 2%);
+  cursor: pointer; */
   display: flex;
   flex-direction: row;
 }
@@ -40,12 +51,12 @@
 
 .btn-left {
   border-start-start-radius: 25px;
-  border-end-start-radius: 25px;
+  /* border-end-start-radius: 25px; */
   border-right: 2px;
 }
 
 .btn-right {
-  border-end-end-radius: 25px;
+  /* border-end-end-radius: 25px; */
   border-start-end-radius: 25px;
   border-left: 2px;
 }
