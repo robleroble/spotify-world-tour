@@ -14,13 +14,13 @@ function Browse() {
     setMusic,
     spotifyToolbarCategory,
     country,
-    categories,
     setCategories,
+    category,
   } = useContext(BrowseContext);
 
   useEffect(() => {
     getMusic(country.code, user);
-  }, [country, spotifyToolbarCategory]);
+  }, [country, spotifyToolbarCategory, category]);
 
   useEffect(() => {
     // load categories
@@ -42,6 +42,14 @@ function Browse() {
     } else if (spotifyToolbarCategory === "Featured Playlists") {
       spotifyMusic = await SWTApi.getFeaturedPlaylist(token, country);
       type = "playlist";
+    } else if (spotifyToolbarCategory === "Playlists by Genre") {
+      spotifyMusic = await SWTApi.getPlaylistsByCategory(
+        token,
+        country,
+        category
+      );
+      type = "playlist";
+      console.log(spotifyMusic);
     }
     setMusic({ type, spotifyMusic });
   }
@@ -61,7 +69,6 @@ function Browse() {
       console.log("yes country");
       categories = await SWTApi.getCategories(token, country);
     }
-    console.log(categories.categories.categories.items);
     setCategories(categories.categories.categories.items);
   }
 

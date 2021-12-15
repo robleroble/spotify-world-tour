@@ -5,9 +5,8 @@ import { chunks } from "chunk-array";
 
 function SpotifyCategories() {
   const [categoryChunk, setCategoryChunk] = useState(0);
-  const { categories } = useContext(BrowseContext);
+  const { categories, setCategory } = useContext(BrowseContext);
   let chunkedCategories = chunks(categories, 10);
-  console.log(chunkedCategories);
   function forwardCategory() {
     if (categoryChunk === chunkedCategories.length - 1) {
       setCategoryChunk(0);
@@ -23,13 +22,17 @@ function SpotifyCategories() {
       setCategoryChunk(categoryChunk - 1);
     }
   }
+
+  function setPlaylistCategory(e) {
+    setCategory(e.target.id);
+  }
   return (
     <div className="SpotifyCategories">
       <button onClick={backwardCategory}>&#8592;</button>
       <div className="spotifyCategory-chunks">
         {chunkedCategories[categoryChunk].map((cat) => (
-          <div className="catName" key={cat.id}>
-            <p>{cat.name}</p>
+          <div onClick={setPlaylistCategory} className="catName" key={cat.id}>
+            <p id={cat.id}>{cat.name}</p>
           </div>
         ))}
       </div>

@@ -32,7 +32,6 @@ class SpotifyApiCaller {
 
   static async getAlbumTracks(albumId, accessToken) {
     const url = `${BASE_URL}/albums/${albumId}/tracks`;
-    console.log(url);
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -69,8 +68,8 @@ class SpotifyApiCaller {
     return res;
   }
 
-  static async getPlaylistByCategory(country, categoryId, offset, accessToken) {
-    const url = `${BASE_URL}/browse/categories/${categoryId}/playlists?country=${country}&offset=${offset}`;
+  static async getPlaylistByCategory(country, categoryId, accessToken) {
+    const url = `${BASE_URL}/browse/categories/${categoryId}/playlists?country=${country}`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${accessToken}`,

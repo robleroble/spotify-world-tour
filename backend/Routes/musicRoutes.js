@@ -48,14 +48,12 @@ router.post("/get-playlist-categories", async function (req, res, next) {
   }
 });
 
-router.post("/get-playlist", async function (req, res, next) {
+router.post("/get-playlist-by-genre", async function (req, res, next) {
   try {
     const { country, categoryId, accessToken } = req.body;
-    const offset = Math.floor(Math.random() * 20) + 1;
     const playlists = await SpotifyApiCaller.getPlaylistByCategory(
       country,
       categoryId,
-      offset,
       accessToken
     );
     return res.json({ playlists });

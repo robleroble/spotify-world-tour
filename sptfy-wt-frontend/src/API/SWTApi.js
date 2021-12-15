@@ -20,15 +20,11 @@ class SWTApi {
     const url = `${BASE_URL}/auth/client-credentials`;
     const method = "GET";
     let res = await axios({ url, method });
-    // let res = await this.request("music");
-    console.log("cctoken");
-    // console.log(res);
     const token = res.data.clientCredentialsToken.access_token;
     return token;
   }
 
   static async getAlbum(accessToken, country) {
-    console.log("API new releases");
     const url = `${BASE_URL}/music/get-album`;
     const method = "post";
     const data = {
@@ -36,12 +32,10 @@ class SWTApi {
       accessToken,
     };
     let res = await axios({ url, method, data });
-    console.log(res.data);
     return res.data.albums.albums;
   }
 
   static async getFeaturedPlaylist(accessToken, country) {
-    console.log("API featured playlists");
     const url = `${BASE_URL}/music/get-featured-playlists`;
     const method = "POST";
     const data = {
@@ -55,7 +49,6 @@ class SWTApi {
   }
 
   static async getCategories(accessToken, country) {
-    console.log("API get categories");
     const url = `${BASE_URL}/music/get-playlist-categories`;
     const method = "POST";
     const data = {
@@ -63,6 +56,20 @@ class SWTApi {
       country,
     };
     let res = await axios({ url, method, data });
+    return res.data;
+  }
+
+  static async getPlaylistsByCategory(accessToken, country, categoryId) {
+    console.log("API get playlists by category");
+    const url = `${BASE_URL}/music/get-playlist-by-genre`;
+    const method = "POST";
+    const data = {
+      accessToken,
+      country,
+      categoryId,
+    };
+    let res = await axios({ url, method, data });
+    console.log(res.data);
     return res.data;
   }
 }
