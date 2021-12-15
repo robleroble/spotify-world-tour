@@ -10,15 +10,34 @@
   display: flex;
 }
 
+.spotifyCategories-btn {
+  color: #1db954;
+  border: none;
+  background-color: #e6e6e6;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.spotifyCategories-btn:hover {
+  color: #0f7535;
+}
+
 .spotifyCategory-chunks {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
 .catName {
-  padding: 2%;
-  border: solid white 1px;
+  flex-basis: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catName:hover {
+  background-color: #1db954;
 }
 
 .catName p {

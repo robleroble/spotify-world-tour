@@ -2,6 +2,10 @@ import React, { useContext, useState } from "react";
 import BrowseContext from "../../Context/BrowseContext";
 import "./SpotifyCategories.css";
 import { chunks } from "chunk-array";
+import {
+  IoMdArrowDropleftCircle,
+  IoMdArrowDroprightCircle,
+} from "react-icons/io";
 
 function SpotifyCategories() {
   const [categoryChunk, setCategoryChunk] = useState(0);
@@ -28,7 +32,9 @@ function SpotifyCategories() {
   }
   return (
     <div className="SpotifyCategories">
-      <button onClick={backwardCategory}>&#8592;</button>
+      <button className="spotifyCategories-btn" onClick={backwardCategory}>
+        <IoMdArrowDropleftCircle size={30} />
+      </button>
       <div className="spotifyCategory-chunks">
         {chunkedCategories[categoryChunk].map((cat) => (
           <div onClick={setPlaylistCategory} className="catName" key={cat.id}>
@@ -36,7 +42,9 @@ function SpotifyCategories() {
           </div>
         ))}
       </div>
-      <button onClick={forwardCategory}>&#8594;</button>
+      <button className="spotifyCategories-btn" onClick={forwardCategory}>
+        <IoMdArrowDroprightCircle size={30} />
+      </button>
     </div>
   );
 }
