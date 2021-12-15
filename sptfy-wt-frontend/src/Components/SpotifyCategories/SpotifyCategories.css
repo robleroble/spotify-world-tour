@@ -9,3 +9,18 @@
   width: 100%;
   display: flex;
 }
+
+.spotifyCategory-chunks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.catName {
+  padding: 2%;
+  border: solid white 1px;
+}
+
+.catName p {
+  color: black;
+}
