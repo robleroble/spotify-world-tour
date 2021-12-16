@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./SpotifyToolbar.css";
 import BrowseContext from "../../Context/BrowseContext";
 import SpotifyCategories from "../SpotifyCategories/SpotifyCategories";

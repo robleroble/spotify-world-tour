@@ -10,12 +10,6 @@
 }
 
 .SpotifyToolbar {
-  /* z-index: 1;
-  width: 55%;
-  position: fixed;
-  left: 6%;
-  top: calc(60px + 2%);
-  cursor: pointer; */
   display: flex;
   flex-direction: row;
 }

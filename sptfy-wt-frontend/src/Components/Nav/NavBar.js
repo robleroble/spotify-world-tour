@@ -44,9 +44,9 @@ function NavBar({ logout }) {
     return (
       <>
         <li className="nav-item">
-          <a href="/#" onClick={spotifyLogin} className="nav-link">
+          <p onClick={spotifyLogin} className="nav-link">
             Login
-          </a>
+          </p>
         </li>
       </>
     );
