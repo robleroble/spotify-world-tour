@@ -44,6 +44,7 @@ app.use(passport.session());
 // Routes
 const musicRoutes = require("./Routes/musicRoutes");
 const authRoutes = require("./Routes/authRoutes");
+const userRoutes = require("./Routes/userRoutes");
 // const {
 //   SPOTIFY_CLIENT_ID,
 //   SPOTIFY_CLIENT_SECRET,
@@ -52,6 +53,7 @@ const authRoutes = require("./Routes/authRoutes");
 
 app.use("/music", musicRoutes);
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 ////////////////////////////////////////////////
 
 // 404 Handler

@@ -75,6 +75,71 @@ class SpotifyApiCaller {
       Authorization: `Bearer ${accessToken}`,
     };
     const res = (await axios({ url, method, headers })).data;
+    return res;
+  }
+
+  static async followsPlaylist(playlistId, userId, accessToken) {
+    const url = `${BASE_URL}/playlists/${playlistId}/followers/contains?ids=${userId}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    console.log(res);
+    return res;
+  }
+
+  static async followPlaylist(playlistId, accessToken) {
+    const url = `${BASE_URL}/playlists/${playlistId}/followers`;
+    const method = "PUT";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    console.log(res);
+    return res;
+  }
+
+  static async unfollowPlaylist(playlistId, accessToken) {
+    const url = `${BASE_URL}/playlists/${playlistId}/followers`;
+    const method = "DELETE";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    console.log(res);
+    return res;
+  }
+
+  static async checkSavedAlbums(albumId, accessToken) {
+    const url = `${BASE_URL}/me/albums/contains?ids=${albumId}`;
+    const method = "GET";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    console.log(res);
+    return res;
+  }
+
+  static async saveAlbum(albumId, accessToken) {
+    const url = `${BASE_URL}/me/albums?ids=${albumId}`;
+    const method = "PUT";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
+    console.log(res);
+    return res;
+  }
+
+  static async removeAlbum(albumId, accessToken) {
+    const url = `${BASE_URL}/me/albums?ids=${albumId}`;
+    const method = "DELETE";
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    const res = (await axios({ url, method, headers })).data;
     console.log(res);
     return res;
   }

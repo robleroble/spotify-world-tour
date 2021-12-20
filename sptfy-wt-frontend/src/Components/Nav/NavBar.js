@@ -15,14 +15,14 @@ function NavBar({ logout }) {
     return (
       <>
         <li className="nav-item">
-          <Link to="profile" className="nav-link nav-profile">
+          <a href={user.profileUrl} className="nav-link nav-profile">
             <img
               className="navbar-profile-img"
               src={user.photos[0].value}
               alt="spotify profile"
             />
             {user.displayName}
-          </Link>
+          </a>
         </li>
         <li className="nav-item">
           <a
@@ -57,14 +57,7 @@ function NavBar({ logout }) {
       <Link to="/" className="nav-link nav-logo">
         Spotify World Tour
       </Link>
-      <ul className="nav-items">
-        <li className="nav-item">
-          <Link to="browse" className="nav-link nav-profile">
-            Explore Music
-          </Link>
-        </li>
-        {user ? loggedInNav() : loggedOutNav()}
-      </ul>
+      <ul className="nav-items">{user ? loggedInNav() : loggedOutNav()}</ul>
     </nav>
   );
 }

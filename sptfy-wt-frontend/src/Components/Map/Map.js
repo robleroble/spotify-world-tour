@@ -2,7 +2,13 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 import BrowseContext from "../../Context/BrowseContext";
 
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import { clearMapLayer, selectedCountryLayer } from "./MapStyles.js";
+import {
+  clearMapLayer,
+  selectedCountryLayer,
+  spotifyMarketCountries,
+  hoveredCountryLayer,
+  markets,
+} from "./MapStyles.js";
 import "./Map.css";
 
 mapboxgl.accessToken =
@@ -15,6 +21,7 @@ function Map() {
 
   const mapContainer = useRef("");
   const map = useRef(null);
+  let hoveredStateId = null;
 
   const { setCountry } = useContext(BrowseContext);
 
@@ -34,12 +41,12 @@ function Map() {
       map.current.addLayer(clearMapLayer, "country-label");
       //
       map.current.addLayer(selectedCountryLayer, "country-label");
+      //
+      map.current.addLayer(hoveredCountryLayer, "country-label");
     });
 
     // highlights clicked on countries
     map.current.on("click", "country-boundaries", function (e) {
-      // console.log(e.features[0].properties.iso_3166_1);
-
       map.current.setLayoutProperty(
         "selected-country",
         "visibility",
