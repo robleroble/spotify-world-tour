@@ -24,33 +24,39 @@ function SpotifyToolbar() {
   return (
     <div className="SpotifyToolbar-container">
       <div onClick={clickToChangeCategory} className="SpotifyToolbar">
-        <button
-          className={
-            spotifyToolbarCategory === "New Releases"
-              ? "SpotifyToolbar-btn btn-left SpotifyToolbar-selected-btn"
-              : "SpotifyToolbar-btn btn-left"
-          }
-        >
-          New Releases
-        </button>
-        <button
-          className={
-            spotifyToolbarCategory === "Playlists by Genre"
-              ? "SpotifyToolbar-btn btn-middle SpotifyToolbar-selected-btn"
-              : "SpotifyToolbar-btn btn-middle"
-          }
-        >
-          Playlists by Genre
-        </button>
-        <button
-          className={
-            spotifyToolbarCategory === "Featured Playlists"
-              ? "SpotifyToolbar-btn btn-right SpotifyToolbar-selected-btn"
-              : "SpotifyToolbar-btn btn-right"
-          }
-        >
-          Featured Playlists
-        </button>
+        <div className="btn-container">
+          <button
+            className={
+              spotifyToolbarCategory === "New Releases"
+                ? "SpotifyToolbar-btn btn-left SpotifyToolbar-selected-btn"
+                : "SpotifyToolbar-btn btn-left"
+            }
+          >
+            New Releases
+          </button>
+        </div>
+        <div className="btn-container">
+          <button
+            className={
+              spotifyToolbarCategory === "Playlists by Genre"
+                ? "SpotifyToolbar-btn btn-middle SpotifyToolbar-selected-btn"
+                : "SpotifyToolbar-btn btn-middle"
+            }
+          >
+            Playlists by Genre
+          </button>
+        </div>
+        <div className="btn-container">
+          <button
+            className={
+              spotifyToolbarCategory === "Featured Playlists"
+                ? "SpotifyToolbar-btn btn-right SpotifyToolbar-selected-btn"
+                : "SpotifyToolbar-btn btn-right"
+            }
+          >
+            Featured Playlists
+          </button>
+        </div>
       </div>
       {spotifyToolbarCategory === "Playlists by Genre" && <SpotifyCategories />}
     </div>

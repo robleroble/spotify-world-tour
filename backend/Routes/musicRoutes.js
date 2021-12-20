@@ -6,13 +6,10 @@ router.post("/get-album", async function (req, res, next) {
   try {
     const { country, accessToken } = req.body;
 
-    const offset = Math.floor(Math.random() * 20) + 1;
     const albums = await SpotifyApiCaller.getAlbumNewReleases(
       country,
-      offset,
       accessToken
     );
-    // const albumId = albums.albums.items[0].id;
     return res.json({ albums });
   } catch (err) {
     return next(err);

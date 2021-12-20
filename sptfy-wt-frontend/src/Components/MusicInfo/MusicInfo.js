@@ -3,11 +3,13 @@ import SpotifyWidget from "../SpotifyWidget/SpotifyWidget";
 import "./MusicInfo.css";
 import FollowIcon from "../FollowIcon/FollowIcon";
 import UserContext from "../../Context/UserContext";
+import BrowseContext from "../../Context/BrowseContext";
 
-function MusicInfo({ music }) {
+function MusicInfo() {
   let type;
   let BASE_API_TEXT;
   const { user } = useContext(UserContext);
+  const { music } = useContext(BrowseContext);
 
   if (music.type === "album") {
     type = "album";
@@ -30,6 +32,7 @@ function MusicInfo({ music }) {
               </div>
               <h3>{music.spotifyMusic.items[0].name}</h3>
             </div>
+
             <div>
               <p>Artist</p>
               <h3>{music.spotifyMusic.items[0].artists[0].name}</h3>
@@ -62,6 +65,7 @@ function MusicInfo({ music }) {
               </div>
               <h3>{music.spotifyMusic.playlists.playlists.items[0].name}</h3>
             </div>
+
             <div>
               <p>Description</p>
               <h3>

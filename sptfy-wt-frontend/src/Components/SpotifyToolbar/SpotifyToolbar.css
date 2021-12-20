@@ -12,11 +12,12 @@
 .SpotifyToolbar {
   display: flex;
   flex-direction: row;
+  align-items: auto;
 }
 
 .SpotifyToolbar-btn {
   width: calc(100% / 3);
-  height: 50px;
+  height: auto;
   border-color: #1db954;
   border-style: solid;
   border-width: 3.5px;
@@ -26,6 +27,8 @@
   background-color: #e6e6e6;
   text-decoration: underline;
   text-decoration-color: #1db954;
+  width: 100%;
+  height: 100%;
 }
 
 .SpotifyToolbar-btn:hover {
@@ -45,12 +48,14 @@
 
 .btn-left {
   border-start-start-radius: 25px;
-  /* border-end-start-radius: 25px; */
   border-right: 2px;
 }
 
 .btn-right {
-  /* border-end-end-radius: 25px; */
   border-start-end-radius: 25px;
   border-left: 2px;
+}
+
+.btn-container {
+  width: calc(100% / 3);
 }

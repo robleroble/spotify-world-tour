@@ -21,8 +21,8 @@ class SpotifyApiCaller {
     return (await axios({ url, method, data, headers })).data;
   }
 
-  static async getAlbumNewReleases(country, offset, accessToken) {
-    const url = `${BASE_URL}/browse/new-releases?country=${country}&offset=${offset}`;
+  static async getAlbumNewReleases(country, accessToken) {
+    const url = `${BASE_URL}/browse/new-releases?country=${country}`;
     const method = "GET";
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -37,7 +37,6 @@ class SpotifyApiCaller {
       Authorization: `Bearer ${accessToken}`,
     };
     const res = (await axios({ url, method, headers })).data;
-    // console.log(res);
     return res;
   }
 

@@ -1,9 +1,11 @@
 .musicInfo {
-  height: auto;
+  height: 100%;
 }
 
 .musicInfo-info {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .musicInfo-name {
@@ -18,6 +20,8 @@
 .musicInfo-img-container {
   max-width: 35%;
   align-self: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .musicInfo-img {
