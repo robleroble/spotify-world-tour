@@ -1,6 +1,3 @@
 .spotifyWidget-container {
-  flex-basis: 50%;
-}
-
-.spotifyWidget {
+  flex-grow: 1;
 }

@@ -1,14 +1,13 @@
 .musicInfo {
-  /* display: flex;
-  flex-direction: column;
-  flex-grow: 1; */
-  flex-grow: 1;
+  height: auto;
 }
 
 .musicInfo-info {
   display: flex;
-  margin-bottom: 5%;
-  flex-grow: 1;
+}
+
+.musicInfo-name {
+  display: flex;
 }
 .musicInfo-album-artist {
   align-self: stretch;

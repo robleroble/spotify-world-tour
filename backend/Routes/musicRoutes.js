@@ -35,7 +35,6 @@ router.post("/get-featured-playlists", async function (req, res, next) {
 router.post("/get-playlist-categories", async function (req, res, next) {
   try {
     const { country, accessToken } = req.body;
-    console.log(req.body);
     const categories = await SpotifyApiCaller.getBrowseCategories(
       accessToken,
       country

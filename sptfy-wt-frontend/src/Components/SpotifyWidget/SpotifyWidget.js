@@ -10,6 +10,7 @@ const SpotifyWidget = ({ type, id }) => {
         className="spotifyWidget"
         src={widgetUri}
         width="100%"
+        height="100%"
         allow="encrypted-media"
         title="spotify widget"
       ></iframe>

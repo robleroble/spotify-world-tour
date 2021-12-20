@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import SpotifyWidget from "../SpotifyWidget/SpotifyWidget";
 import "./MusicInfo.css";
+import FollowIcon from "../FollowIcon/FollowIcon";
+import UserContext from "../../Context/UserContext";
 
 function MusicInfo({ music }) {
   let type;
   let BASE_API_TEXT;
+  const { user } = useContext(UserContext);
 
   if (music.type === "album") {
     type = "album";
@@ -21,7 +24,10 @@ function MusicInfo({ music }) {
         <div className="musicInfo-info">
           <div className="musicInfo-album-artist">
             <div>
-              <p>Album</p>
+              <div className="musicInfo-name">
+                <p>Album</p>
+                {user ? <FollowIcon /> : <></>}
+              </div>
               <h3>{music.spotifyMusic.items[0].name}</h3>
             </div>
             <div>
@@ -50,7 +56,10 @@ function MusicInfo({ music }) {
         <div className="musicInfo-info">
           <div className="musicInfo-album-artist">
             <div>
-              <p>Playlist Name</p>
+              <div className="musicInfo-name">
+                <p>Playlist</p>
+                {user ? <FollowIcon /> : <></>}
+              </div>
               <h3>{music.spotifyMusic.playlists.playlists.items[0].name}</h3>
             </div>
             <div>
