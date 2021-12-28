@@ -34,7 +34,7 @@
 .countryInfo {
   color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   margin-bottom: 5%;
 }

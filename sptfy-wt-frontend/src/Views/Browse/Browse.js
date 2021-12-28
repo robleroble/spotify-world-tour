@@ -4,6 +4,7 @@ import MusicInfo from "../../Components/MusicInfo/MusicInfo";
 import SpotifyToolbar from "../../Components/SpotifyToolbar/SpotifyToolbar";
 import "./Browse.css";
 import SWTApi from "../../API/SWTApi";
+import MusicShuffler from "../../Components/MusicShuffler/MusicShuffler";
 import UserContext from "../../Context/UserContext";
 import BrowseContext from "../../Context/BrowseContext";
 
@@ -36,12 +37,18 @@ function Browse() {
     }
     let spotifyMusic;
     let type;
+    let length;
+    let musicIdx;
     if (spotifyToolbarCategory === "New Releases") {
       spotifyMusic = await SWTApi.getAlbum(token, country);
       type = "album";
+      length = spotifyMusic.items.length;
+      musicIdx = 0;
     } else if (spotifyToolbarCategory === "Featured Playlists") {
       spotifyMusic = await SWTApi.getFeaturedPlaylist(token, country);
       type = "playlist";
+      length = spotifyMusic.playlists.playlists.items.length;
+      musicIdx = 0;
     } else if (spotifyToolbarCategory === "Playlists by Genre") {
       spotifyMusic = await SWTApi.getPlaylistsByCategory(
         token,
@@ -49,9 +56,10 @@ function Browse() {
         category
       );
       type = "playlist";
-      console.log(spotifyMusic);
+      length = spotifyMusic.playlists.playlists.items.length;
+      musicIdx = 0;
     }
-    setMusic({ type, spotifyMusic });
+    setMusic({ type, spotifyMusic, length, musicIdx });
   }
 
   async function getCategories(country) {
@@ -89,6 +97,7 @@ function Browse() {
       <div className="musicInfo">
         <div className="countryInfo">
           <h1 className="countryTitle">{country.name}</h1>
+          <MusicShuffler />
         </div>
         <hr className="musicInfo-hr" />
         <MusicInfo />

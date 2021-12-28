@@ -8,15 +8,18 @@ import BrowseContext from "../../Context/BrowseContext";
 function MusicInfo() {
   let type;
   let BASE_API_TEXT;
+  let musicIdx;
   const { user } = useContext(UserContext);
   const { music } = useContext(BrowseContext);
 
   if (music.type === "album") {
     type = "album";
     BASE_API_TEXT = `music.spotifyMusic.items[0]`;
+    musicIdx = music.musicIdx;
   } else if (music.type === "playlist") {
     type = "playlist";
     BASE_API_TEXT = `music.spotifyMusic.playlists.playlists.items[0]`;
+    musicIdx = music.musicIdx;
   }
 
   // if music type is an album (vs a playlist)
@@ -30,24 +33,29 @@ function MusicInfo() {
                 <p>Album</p>
                 {user ? <FollowIcon /> : <></>}
               </div>
-              <h3>{music.spotifyMusic.items[0].name}</h3>
+              <h3>{music.spotifyMusic.items[`${music.musicIdx}`].name}</h3>
             </div>
 
             <div>
               <p>Artist</p>
-              <h3>{music.spotifyMusic.items[0].artists[0].name}</h3>
+              <h3>
+                {music.spotifyMusic.items[`${music.musicIdx}`].artists[0].name}
+              </h3>
             </div>
           </div>
           <div className="musicInfo-img-container">
             <img
               className="musicInfo-img"
-              src={music.spotifyMusic.items[0].images[1].url}
+              src={music.spotifyMusic.items[`${music.musicIdx}`].images[1].url}
               alt="album cover art"
             />
           </div>
         </div>
         <hr />
-        <SpotifyWidget id={music.spotifyMusic.items[0].id} type="album" />
+        <SpotifyWidget
+          id={music.spotifyMusic.items[`${music.musicIdx}`].id}
+          type="album"
+        />
       </>
     );
   }
@@ -63,13 +71,23 @@ function MusicInfo() {
                 <p>Playlist</p>
                 {user ? <FollowIcon /> : <></>}
               </div>
-              <h3>{music.spotifyMusic.playlists.playlists.items[0].name}</h3>
+              <h3>
+                {
+                  music.spotifyMusic.playlists.playlists.items[
+                    `${music.musicIdx}`
+                  ].name
+                }
+              </h3>
             </div>
 
             <div>
               <p>Description</p>
               <h3>
-                {music.spotifyMusic.playlists.playlists.items[0].description}
+                {
+                  music.spotifyMusic.playlists.playlists.items[
+                    `${music.musicIdx}`
+                  ].description
+                }
               </h3>
             </div>
           </div>
@@ -78,7 +96,9 @@ function MusicInfo() {
             <img
               className="musicInfo-img"
               src={
-                music.spotifyMusic.playlists.playlists.items[0].images[0].url
+                music.spotifyMusic.playlists.playlists.items[
+                  `${music.musicIdx}`
+                ].images[0].url
               }
               alt="album cover art"
             />
@@ -86,7 +106,9 @@ function MusicInfo() {
         </div>
         <hr />
         <SpotifyWidget
-          id={music.spotifyMusic.playlists.playlists.items[0].id}
+          id={
+            music.spotifyMusic.playlists.playlists.items[`${music.musicIdx}`].id
+          }
           type="playlist"
         />
       </>

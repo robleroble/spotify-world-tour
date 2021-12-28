@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./SpotifyToolbar.css";
 import BrowseContext from "../../Context/BrowseContext";
 import SpotifyCategories from "../SpotifyCategories/SpotifyCategories";
+import MusicShuffler from "../../Components/MusicShuffler/MusicShuffler";
 
 function SpotifyToolbar() {
   const { spotifyToolbarCategory, setSpotifyToolbarCategory, country } =
