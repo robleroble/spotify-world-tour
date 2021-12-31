@@ -21,7 +21,6 @@ function Map() {
 
   const mapContainer = useRef("");
   const map = useRef(null);
-  let hoveredStateId = null;
 
   const { setCountry } = useContext(BrowseContext);
 
@@ -74,7 +73,19 @@ function Map() {
 
     // changes cursor when hovering over layer
     map.current.on("mouseenter", "country-boundaries", (e) => {
-      map.current.getCanvas().style.cursor = "pointer";
+      // console.log(e.features[0].properties.iso_3166_1);
+      let hoveredCountry = e.features[0].properties.iso_3166_1;
+      // console.log(markets.includes(hoveredCountry));
+      if (markets.includes(hoveredCountry)) {
+        // console.log("includes true");
+        map.current.setFilter("hovered-country", [
+          "==",
+          "iso_3166_1",
+          hoveredCountry,
+        ]);
+
+        map.current.getCanvas().style.cursor = "pointer";
+      }
     });
     // updates state (lat, long, zoom) as user scrolls around
     map.current.on("move", function () {

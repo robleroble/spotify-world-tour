@@ -31,7 +31,7 @@ function MusicInfo() {
             <div>
               <div className="musicInfo-name">
                 <p>Album</p>
-                {user ? <FollowIcon /> : <></>}
+                {/* {user ? <FollowIcon /> : <></>} */}
               </div>
               <h3>{music.spotifyMusic.items[`${music.musicIdx}`].name}</h3>
             </div>
@@ -69,7 +69,7 @@ function MusicInfo() {
             <div>
               <div className="musicInfo-name">
                 <p>Playlist</p>
-                {user ? <FollowIcon /> : <></>}
+                {/* {user ? <FollowIcon /> : <></>} */}
               </div>
               <h3>
                 {
@@ -82,13 +82,13 @@ function MusicInfo() {
 
             <div>
               <p>Description</p>
-              <h3>
+              <h4>
                 {
                   music.spotifyMusic.playlists.playlists.items[
                     `${music.musicIdx}`
                   ].description
                 }
-              </h3>
+              </h4>
             </div>
           </div>
 

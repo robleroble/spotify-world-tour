@@ -1,3 +1,19 @@
 .musicShuffler {
   display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+h5 {
+  margin-bottom: 0;
+  text-decoration: underline;
+  text-decoration-color: #1db954;
+  padding-bottom: 2px;
+  text-align: center;
+}
+
+.arrow-btn {
+  cursor: pointer;
+  margin: 0 4px 0 4px;
+  color: #1db954;
 }

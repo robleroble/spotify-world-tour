@@ -72,6 +72,19 @@ class SWTApi {
     console.log(res.data);
     return res.data;
   }
+
+  static async checkIfPlaylistFollowed(accessToken, playlistId, userId) {
+    const url = `${BASE_URL}/users/followed-playlists`;
+    const method = "POST";
+    const data = {
+      accessToken,
+      playlistId,
+      userId,
+    };
+    let res = await axios({ url, method, data });
+    console.log(res.data);
+    return res.data;
+  }
 }
 
 export default SWTApi;

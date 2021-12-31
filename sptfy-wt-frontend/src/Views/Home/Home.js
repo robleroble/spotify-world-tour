@@ -23,12 +23,10 @@ function Home() {
     <div className="home-view" style={bgImgStyle}>
       <div className="home-container">
         <h1 className="home-title">Spotify World Tour</h1>
-        <h6 className="home-description">
-          Explore music from around the world! By logging on with your spotify
-          account, you can create your own playlists from music you discover
-          using this app. If you don't have a spotify account, don't worry, you
-          can still browse music.
-        </h6>
+        {/* <h6 className="home-description">
+          Explore music from around the world! Continue by logging on to your
+          spotify account or browse music anonymously.
+        </h6> */}
         <div className="home-btns">
           <button onClick={spotifyLogin} className="home-button">
             Continue with Spotify

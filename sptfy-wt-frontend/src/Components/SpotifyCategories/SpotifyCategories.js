@@ -9,7 +9,7 @@ import {
 
 function SpotifyCategories() {
   const [categoryChunk, setCategoryChunk] = useState(0);
-  const { categories, setCategory } = useContext(BrowseContext);
+  const { categories, setCategory, category } = useContext(BrowseContext);
   let chunkedCategories = chunks(categories, 10);
   function forwardCategory() {
     if (categoryChunk === chunkedCategories.length - 1) {
@@ -37,7 +37,13 @@ function SpotifyCategories() {
       </button>
       <div className="spotifyCategory-chunks">
         {chunkedCategories[categoryChunk].map((cat) => (
-          <div onClick={setPlaylistCategory} className="catName" key={cat.id}>
+          <div
+            onClick={setPlaylistCategory}
+            className={
+              category === cat.id ? " catName catName-selected" : "catName"
+            }
+            key={cat.id}
+          >
             <p id={cat.id}>{cat.name}</p>
           </div>
         ))}

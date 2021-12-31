@@ -34,14 +34,20 @@
 .countryInfo {
   color: white;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 5%;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0;
 }
 
 .countryTitle {
   text-decoration: underline;
   text-decoration-color: #1db954;
+}
+
+.country-flag {
+  height: 60px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .shuffle-btn {

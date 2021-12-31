@@ -36,8 +36,15 @@
   justify-content: center;
 }
 
-.catName:hover {
-  background-color: #1db954;
+.catName p:hover {
+  color: #0f7535;
+  font-weight: bold;
+}
+
+.catName-selected {
+  /* color: #0f7535; */
+  font-weight: bold;
+  text-shadow: 0 0 0.2em #0f7535;
 }
 
 .catName p {

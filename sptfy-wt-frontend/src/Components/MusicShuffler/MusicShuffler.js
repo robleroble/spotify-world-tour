@@ -31,9 +31,17 @@ function MusicShuffler() {
 
   return (
     <div className="musicShuffler">
-      <IoMdArrowDropleftCircle size={30} onClick={decrementMusicIdx} />
-      <h5>Find more music</h5>
-      <IoMdArrowDroprightCircle size={30} onClick={incrementMusicIdx} />
+      <IoMdArrowDropleftCircle
+        size={30}
+        className="arrow-btn"
+        onClick={decrementMusicIdx}
+      />
+      <h5>More Music</h5>
+      <IoMdArrowDroprightCircle
+        size={30}
+        className="arrow-btn"
+        onClick={incrementMusicIdx}
+      />
     </div>
   );
 }

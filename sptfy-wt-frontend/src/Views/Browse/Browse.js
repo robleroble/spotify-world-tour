@@ -19,10 +19,12 @@ function Browse() {
     category,
   } = useContext(BrowseContext);
 
+  // updates music when country, toolbar, or genre changes
   useEffect(() => {
     getMusic(country.code, user);
   }, [country, spotifyToolbarCategory, category]);
 
+  // updates genres when country changes
   useEffect(() => {
     // load categories
     getCategories(country.code);
@@ -62,6 +64,20 @@ function Browse() {
     setMusic({ type, spotifyMusic, length, musicIdx });
   }
 
+  // loadedMusic will be an array of spotifyMusic.items
+  // async function checkIfPlaylistFollowed(loadedMusic) {
+  //   // for each playlist in music, API call to check if true/false
+  //   loadedMusic.forEach((playlist) => {
+  //     const followed = await SWTApi.checkIfPlaylistFollowed(
+  //       accessToken,
+  //       playlist.id,
+  //       user.id
+  //     );
+  //     // music.spotifyMusic.playlists.playlists.items[IDX];
+  //   });
+  // then add an additional value to spotifyMusic called "follows" with value
+  // }
+
   async function getCategories(country) {
     let token;
     if (user === null) {
@@ -97,8 +113,14 @@ function Browse() {
       <div className="musicInfo">
         <div className="countryInfo">
           <h1 className="countryTitle">{country.name}</h1>
+          <img
+            className="country-flag"
+            alt={`${country.name}`}
+            src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${country.code}.svg`}
+          />
           <MusicShuffler />
         </div>
+
         <hr className="musicInfo-hr" />
         <MusicInfo />
       </div>
