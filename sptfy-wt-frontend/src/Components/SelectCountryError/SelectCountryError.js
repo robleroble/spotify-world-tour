@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AiOutlineClose, AiOutlineCloseSquare } from "react-icons/ai";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 import "./SelectCountryError.css";
 import BrowseContext from "../../Context/BrowseContext";
 

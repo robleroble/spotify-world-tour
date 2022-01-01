@@ -9,7 +9,6 @@ function MusicInfo() {
   let type;
   let BASE_API_TEXT;
   let musicIdx;
-  const { user } = useContext(UserContext);
   const { music } = useContext(BrowseContext);
 
   if (music.type === "album") {

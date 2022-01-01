@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../Context/UserContext";
-import { BiRadio } from "react-icons/bi";
 import { BsGlobe } from "react-icons/bs";
 
 import "./NavBar.css";
