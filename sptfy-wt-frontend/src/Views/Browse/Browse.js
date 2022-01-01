@@ -4,7 +4,6 @@ import MusicInfo from "../../Components/MusicInfo/MusicInfo";
 import SpotifyToolbar from "../../Components/SpotifyToolbar/SpotifyToolbar";
 import "./Browse.css";
 import SWTApi from "../../API/SWTApi";
-import MusicShuffler from "../../Components/MusicShuffler/MusicShuffler";
 import UserContext from "../../Context/UserContext";
 import BrowseContext from "../../Context/BrowseContext";
 
@@ -118,9 +117,7 @@ function Browse() {
             alt={`${country.name}`}
             src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${country.code}.svg`}
           />
-          <MusicShuffler />
         </div>
-
         <hr className="musicInfo-hr" />
         <MusicInfo />
       </div>

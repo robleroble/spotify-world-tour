@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../Context/UserContext";
+import { BiRadio } from "react-icons/bi";
+import { BsGlobe } from "react-icons/bs";
 
 import "./NavBar.css";
 
@@ -55,7 +57,10 @@ function NavBar({ logout }) {
   return (
     <nav className="nav">
       <Link to="/" className="nav-link nav-logo">
-        Spotify World Tour
+        <div className="logo-container">
+          <BsGlobe className="globe-icon" />
+          Spotify World Tour
+        </div>
       </Link>
       <ul className="nav-items">{user ? loggedInNav() : loggedOutNav()}</ul>
     </nav>

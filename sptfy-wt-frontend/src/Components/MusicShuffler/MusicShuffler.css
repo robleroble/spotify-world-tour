@@ -1,15 +1,16 @@
 .musicShuffler {
   display: flex;
   align-items: center;
-  height: 100%;
+  justify-content: center;
+  height: auto;
 }
 
 h5 {
+  color: white;
   margin-bottom: 0;
   text-decoration: underline;
   text-decoration-color: #1db954;
   padding-bottom: 2px;
-  text-align: center;
 }
 
 .arrow-btn {

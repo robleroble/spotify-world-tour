@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./SpotifyToolbar.css";
 import BrowseContext from "../../Context/BrowseContext";
 import SpotifyCategories from "../SpotifyCategories/SpotifyCategories";
-import MusicShuffler from "../../Components/MusicShuffler/MusicShuffler";
-
+import SelectCountryError from "../SelectCountryError/SelectCountryError";
 function SpotifyToolbar() {
-  const { spotifyToolbarCategory, setSpotifyToolbarCategory, country } =
-    useContext(BrowseContext);
+  const {
+    spotifyToolbarCategory,
+    setSpotifyToolbarCategory,
+    country,
+    showCountrySelectedError,
+    setShowCountrySelectedError,
+    category,
+    setCategory,
+  } = useContext(BrowseContext);
 
   function clickToChangeCategory(e) {
     let btnHTML = e.target.innerHTML;
@@ -14,10 +20,19 @@ function SpotifyToolbar() {
       spotifyToolbarCategory === btnHTML ||
       ("Playlists by Genre" === btnHTML && country.code === null)
     ) {
-      // do nothing
+      setShowCountrySelectedError(true);
       return;
+    } else if (
+      btnHTML === "Playlists by Genre" &&
+      category === null &&
+      country.code !== null
+    ) {
+      console.log("hello");
+      setCategory("toplists");
+      setSpotifyToolbarCategory(btnHTML);
     } else {
       setSpotifyToolbarCategory(btnHTML);
+
       return;
     }
   }
@@ -60,6 +75,7 @@ function SpotifyToolbar() {
         </div>
       </div>
       {spotifyToolbarCategory === "Playlists by Genre" && <SpotifyCategories />}
+      {showCountrySelectedError && <SelectCountryError />}
     </div>
   );
 }

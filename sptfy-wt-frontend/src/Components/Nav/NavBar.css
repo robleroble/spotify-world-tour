@@ -51,3 +51,12 @@ nav {
 .nav-link:visited {
   color: rgba(245, 245, 245, 0.774);
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.globe-icon {
+  margin-right: 7px;
+}

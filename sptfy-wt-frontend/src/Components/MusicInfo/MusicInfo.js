@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import SpotifyWidget from "../SpotifyWidget/SpotifyWidget";
 import "./MusicInfo.css";
-import FollowIcon from "../FollowIcon/FollowIcon";
 import UserContext from "../../Context/UserContext";
 import BrowseContext from "../../Context/BrowseContext";
+import MusicShuffler from "../MusicShuffler/MusicShuffler";
 
 function MusicInfo() {
   let type;
@@ -31,7 +31,6 @@ function MusicInfo() {
             <div>
               <div className="musicInfo-name">
                 <p>Album</p>
-                {/* {user ? <FollowIcon /> : <></>} */}
               </div>
               <h3>{music.spotifyMusic.items[`${music.musicIdx}`].name}</h3>
             </div>
@@ -51,11 +50,14 @@ function MusicInfo() {
             />
           </div>
         </div>
+
         <hr />
         <SpotifyWidget
           id={music.spotifyMusic.items[`${music.musicIdx}`].id}
           type="album"
         />
+        <hr />
+        <MusicShuffler />
       </>
     );
   }
@@ -69,7 +71,6 @@ function MusicInfo() {
             <div>
               <div className="musicInfo-name">
                 <p>Playlist</p>
-                {/* {user ? <FollowIcon /> : <></>} */}
               </div>
               <h3>
                 {
@@ -82,13 +83,13 @@ function MusicInfo() {
 
             <div>
               <p>Description</p>
-              <h4>
+              <h5>
                 {
                   music.spotifyMusic.playlists.playlists.items[
                     `${music.musicIdx}`
                   ].description
                 }
-              </h4>
+              </h5>
             </div>
           </div>
 
@@ -104,6 +105,7 @@ function MusicInfo() {
             />
           </div>
         </div>
+
         <hr />
         <SpotifyWidget
           id={
@@ -111,6 +113,8 @@ function MusicInfo() {
           }
           type="playlist"
         />
+        <hr />
+        <MusicShuffler />
       </>
     );
   }

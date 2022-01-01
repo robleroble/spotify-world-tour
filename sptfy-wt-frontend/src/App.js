@@ -27,6 +27,8 @@ function App() {
     useState("New Releases");
   const [categories, setCategories] = useState(null);
   const [category, setCategory] = useState(null);
+  const [showCountrySelectedError, setShowCountrySelectedError] =
+    useState(false);
 
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
@@ -85,6 +87,8 @@ function App() {
             setCategory,
             categories,
             setCategories,
+            showCountrySelectedError,
+            setShowCountrySelectedError,
           }}
         >
           <NavBar logout={logout} />
