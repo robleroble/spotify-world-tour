@@ -30,6 +30,8 @@ function App() {
   const [showCountrySelectedError, setShowCountrySelectedError] =
     useState(false);
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
     setCCToken(res);
@@ -37,7 +39,7 @@ function App() {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:3000/auth/login/success", {
+      fetch(`${BASE_URL}/auth/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -67,7 +69,7 @@ function App() {
     setUser(null);
     setAccessToken(null);
     await axios({
-      url: "http://localhost:3000/auth/logout",
+      url: `${BASE_URL}/auth/logout`,
       method: "get",
     });
   }

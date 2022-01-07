@@ -8,7 +8,11 @@ import "./NavBar.css";
 function NavBar({ logout }) {
   const navigate = useNavigate();
   const spotifyLogin = () => {
-    window.open("http://localhost:3000/auth/spotify", "_self");
+    // window.open("http://localhost:3000/auth/spotify", "_self");
+    window.open(
+      "https://spotify-world-tour.herokuapp.com/auth/spotify",
+      "_self"
+    );
   };
   const { user } = useContext(UserContext);
 

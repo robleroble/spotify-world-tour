@@ -57,7 +57,8 @@ router.get(
     failureRedirect: "/login/failed",
   }),
   function (req, res) {
-    res.redirect("http://localhost:3001/browse");
+    // res.redirect("http://localhost:3001/browse");
+    res.redirect("https://spotify-world-tour.netlify.app/browse");
   }
 );
 
