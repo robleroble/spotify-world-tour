@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // development mode
-// const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3000";
 // production mode
-const BASE_URL = "https://spotify-world-tour.herokuapp.com";
+// const BASE_URL = "https://spotify-world-tour.herokuapp.com";
 
 axios.defaults.withCredentials = true;
 

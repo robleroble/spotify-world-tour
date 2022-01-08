@@ -52,9 +52,9 @@ router.get(
   function (req, res) {
     console.log(PORT);
     // development mode
-    // res.redirect("http://localhost:3001/browse");
+    res.redirect("http://localhost:3001/browse");
     // production mode
-    res.redirect("https://spotify-world-tour.netlify.app/browse");
+    // res.redirect("https://spotify-world-tour.netlify.app/browse");
   }
 );
 

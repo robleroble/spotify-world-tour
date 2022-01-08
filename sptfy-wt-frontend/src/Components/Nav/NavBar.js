@@ -23,13 +23,13 @@ function NavBar({ logout }) {
     return (
       <>
         <li className="nav-item">
-          <a href={user.profileUrl} className="nav-link nav-profile">
+          <a href={user.profile.profileUrl} className="nav-link nav-profile">
             <img
               className="navbar-profile-img"
-              src={user.photos[0].value}
+              src={user.profile.photos[0].value}
               alt="spotify profile"
             />
-            {user.displayName}
+            {user.profile.displayName}
           </a>
         </li>
         <li className="nav-item">

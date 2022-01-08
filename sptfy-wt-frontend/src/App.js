@@ -31,9 +31,9 @@ function App() {
     useState(false);
 
   // development mode
-  // const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "http://localhost:3000";
   // production mode
-  const BASE_URL = "https://spotify-world-tour.herokuapp.com";
+  // const BASE_URL = "https://spotify-world-tour.herokuapp.com";
 
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
