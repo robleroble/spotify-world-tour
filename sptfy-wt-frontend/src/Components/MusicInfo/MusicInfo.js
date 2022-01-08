@@ -1,24 +1,17 @@
 import React, { useContext } from "react";
 import SpotifyWidget from "../SpotifyWidget/SpotifyWidget";
 import "./MusicInfo.css";
-import UserContext from "../../Context/UserContext";
 import BrowseContext from "../../Context/BrowseContext";
 import MusicShuffler from "../MusicShuffler/MusicShuffler";
 
 function MusicInfo() {
   let type;
-  let BASE_API_TEXT;
-  let musicIdx;
   const { music } = useContext(BrowseContext);
 
   if (music.type === "album") {
     type = "album";
-    BASE_API_TEXT = `music.spotifyMusic.items[0]`;
-    musicIdx = music.musicIdx;
   } else if (music.type === "playlist") {
     type = "playlist";
-    BASE_API_TEXT = `music.spotifyMusic.playlists.playlists.items[0]`;
-    musicIdx = music.musicIdx;
   }
 
   // if music type is an album (vs a playlist)

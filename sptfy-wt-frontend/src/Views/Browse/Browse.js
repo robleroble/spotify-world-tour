@@ -63,20 +63,6 @@ function Browse() {
     setMusic({ type, spotifyMusic, length, musicIdx });
   }
 
-  // loadedMusic will be an array of spotifyMusic.items
-  // async function checkIfPlaylistFollowed(loadedMusic) {
-  //   // for each playlist in music, API call to check if true/false
-  //   loadedMusic.forEach((playlist) => {
-  //     const followed = await SWTApi.checkIfPlaylistFollowed(
-  //       accessToken,
-  //       playlist.id,
-  //       user.id
-  //     );
-  //     // music.spotifyMusic.playlists.playlists.items[IDX];
-  //   });
-  // then add an additional value to spotifyMusic called "follows" with value
-  // }
-
   async function getCategories(country) {
     let token;
     if (user === null) {
@@ -86,10 +72,8 @@ function Browse() {
     }
     let categories;
     if (country === null) {
-      console.log("no country");
       categories = await SWTApi.getCategories(token, country);
     } else {
-      console.log("yes country");
       categories = await SWTApi.getCategories(token, country);
     }
     setCategories(categories.categories.categories.items);

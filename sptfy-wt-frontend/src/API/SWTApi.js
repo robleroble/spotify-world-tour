@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+// development mode
+// const BASE_URL = "http://localhost:3000";
+// production mode
+const BASE_URL = "https://spotify-world-tour.herokuapp.com";
+
+axios.defaults.withCredentials = true;
 
 class SWTApi {
   static async request(endpoint, data = {}, method = "get") {
@@ -43,8 +48,6 @@ class SWTApi {
       accessToken,
     };
     let res = await axios({ url, method, data });
-    console.log("playlists");
-    console.log(res.data);
     return res.data;
   }
 
@@ -60,7 +63,6 @@ class SWTApi {
   }
 
   static async getPlaylistsByCategory(accessToken, country, categoryId) {
-    console.log("API get playlists by category");
     const url = `${BASE_URL}/music/get-playlist-by-genre`;
     const method = "POST";
     const data = {
@@ -69,7 +71,6 @@ class SWTApi {
       categoryId,
     };
     let res = await axios({ url, method, data });
-    console.log(res.data);
     return res.data;
   }
 
@@ -82,7 +83,6 @@ class SWTApi {
       userId,
     };
     let res = await axios({ url, method, data });
-    console.log(res.data);
     return res.data;
   }
 }

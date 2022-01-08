@@ -30,7 +30,10 @@ function App() {
   const [showCountrySelectedError, setShowCountrySelectedError] =
     useState(false);
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+  // development mode
+  // const BASE_URL = "http://localhost:3000";
+  // production mode
+  const BASE_URL = "https://spotify-world-tour.herokuapp.com";
 
   async function getCCToken() {
     const res = await SWTApi.getCCToken();

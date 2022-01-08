@@ -16,7 +16,14 @@ const bgImgStyle = {
 function Home() {
   const navigate = useNavigate();
   const spotifyLogin = () => {
-    window.open("http://localhost:3000/auth/spotify", "_self");
+    if (window.location.href.includes("localhost")) {
+      window.open("http://localhost:3000/auth/spotify", "_self");
+    } else {
+      window.open(
+        "https://spotify-world-tour.herokuapp.com/auth/spotify",
+        "_self"
+      );
+    }
   };
 
   return (

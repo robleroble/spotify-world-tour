@@ -4,6 +4,7 @@ const SpotifyApiCaller = require("../SpotifyAPICaller");
 
 router.post("/get-album", async function (req, res, next) {
   try {
+    console.log(req.session);
     const { country, accessToken } = req.body;
 
     const albums = await SpotifyApiCaller.getAlbumNewReleases(

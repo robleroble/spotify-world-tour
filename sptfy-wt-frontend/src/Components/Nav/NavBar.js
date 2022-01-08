@@ -8,11 +8,14 @@ import "./NavBar.css";
 function NavBar({ logout }) {
   const navigate = useNavigate();
   const spotifyLogin = () => {
-    // window.open("http://localhost:3000/auth/spotify", "_self");
-    window.open(
-      "https://spotify-world-tour.herokuapp.com/auth/spotify",
-      "_self"
-    );
+    if (window.location.href.includes("localhost")) {
+      window.open("http://localhost:3000/auth/spotify", "_self");
+    } else {
+      window.open(
+        "https://spotify-world-tour.herokuapp.com/auth/spotify",
+        "_self"
+      );
+    }
   };
   const { user } = useContext(UserContext);
 
