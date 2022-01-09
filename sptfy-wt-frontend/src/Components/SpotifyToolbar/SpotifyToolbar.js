@@ -16,23 +16,21 @@ function SpotifyToolbar() {
 
   function clickToChangeCategory(e) {
     let btnHTML = e.target.innerHTML;
-    if (
-      spotifyToolbarCategory === btnHTML ||
-      ("Playlists by Genre" === btnHTML && country.code === null)
-    ) {
+    if ("Playlists by Genre" === btnHTML && country.code === null) {
       setShowCountrySelectedError(true);
+      // setSpotifyToolbarCategory(btnHTML);
       return;
     } else if (
       btnHTML === "Playlists by Genre" &&
       category === null &&
       country.code !== null
     ) {
-      console.log("hello");
       setCategory("toplists");
       setSpotifyToolbarCategory(btnHTML);
+      setShowCountrySelectedError(false);
     } else {
       setSpotifyToolbarCategory(btnHTML);
-
+      setShowCountrySelectedError(false);
       return;
     }
   }

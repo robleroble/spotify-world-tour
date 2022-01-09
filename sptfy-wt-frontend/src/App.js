@@ -6,7 +6,6 @@ import axios from "axios";
 import NavBar from "./Components/Nav/NavBar";
 
 // Views for main pages of app
-import Profile from "./Views/Profile/Profile";
 import Home from "./Views/Home/Home";
 import Browse from "./Views/Browse/Browse";
 
@@ -100,7 +99,6 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="browse" element={<Browse />} />
-            <Route path="profile" element={<Profile user={user} />} />
           </Routes>
         </BrowseContext.Provider>
       </UserContext.Provider>

@@ -16,7 +16,7 @@ passport.use(
     function (req, accessToken, refreshToken, expires_in, profile, done) {
       req.session.accessToken = accessToken;
       req.session.refreshToken = refreshToken;
-      let user = { profile };
+      let user = { ...profile, accessToken, refreshToken };
       return done(null, user);
     }
   )

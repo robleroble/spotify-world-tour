@@ -16,6 +16,7 @@ function Browse() {
     country,
     setCategories,
     category,
+    setShowCountrySelectedError,
   } = useContext(BrowseContext);
 
   // updates music when country, toolbar, or genre changes
@@ -40,17 +41,23 @@ function Browse() {
     let type;
     let length;
     let musicIdx;
-    if (spotifyToolbarCategory === "New Releases") {
+    if (spotifyToolbarCategory === "New Releases" && country !== null) {
       spotifyMusic = await SWTApi.getAlbum(token, country);
       type = "album";
       length = spotifyMusic.items.length;
       musicIdx = 0;
-    } else if (spotifyToolbarCategory === "Featured Playlists") {
+    } else if (
+      spotifyToolbarCategory === "Featured Playlists" &&
+      country !== null
+    ) {
       spotifyMusic = await SWTApi.getFeaturedPlaylist(token, country);
       type = "playlist";
       length = spotifyMusic.playlists.playlists.items.length;
       musicIdx = 0;
-    } else if (spotifyToolbarCategory === "Playlists by Genre") {
+    } else if (
+      spotifyToolbarCategory === "Playlists by Genre" &&
+      country !== null
+    ) {
       spotifyMusic = await SWTApi.getPlaylistsByCategory(
         token,
         country,
@@ -59,6 +66,8 @@ function Browse() {
       type = "playlist";
       length = spotifyMusic.playlists.playlists.items.length;
       musicIdx = 0;
+    } else {
+      return;
     }
     setMusic({ type, spotifyMusic, length, musicIdx });
   }
@@ -72,7 +81,8 @@ function Browse() {
     }
     let categories;
     if (country === null) {
-      categories = await SWTApi.getCategories(token, country);
+      return;
+      // categories = await SWTApi.getCategories(token, country);
     } else {
       categories = await SWTApi.getCategories(token, country);
     }
@@ -99,7 +109,7 @@ function Browse() {
           <img
             className="country-flag"
             alt={`${country.name}`}
-            src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${country.code}.svg`}
+            src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country.code}.svg`}
           />
         </div>
         <hr className="musicInfo-hr" />

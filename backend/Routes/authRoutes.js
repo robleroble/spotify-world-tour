@@ -50,7 +50,6 @@ router.get(
     failureRedirect: "/login/failed",
   }),
   function (req, res) {
-    console.log(PORT);
     // development mode
     res.redirect("http://localhost:3001/browse");
     // production mode

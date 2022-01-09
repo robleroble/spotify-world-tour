@@ -9,7 +9,8 @@ import {
 
 function SpotifyCategories() {
   const [categoryChunk, setCategoryChunk] = useState(0);
-  const { categories, setCategory, category } = useContext(BrowseContext);
+  const { categories, setCategory, category, country } =
+    useContext(BrowseContext);
   let chunkedCategories = chunks(categories, 10);
   function forwardCategory() {
     if (categoryChunk === chunkedCategories.length - 1) {

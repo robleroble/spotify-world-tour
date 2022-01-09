@@ -5,7 +5,6 @@ import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-load
 import {
   clearMapLayer,
   selectedCountryLayer,
-  spotifyMarketCountries,
   hoveredCountryLayer,
   markets,
 } from "./MapStyles.js";
