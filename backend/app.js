@@ -5,27 +5,20 @@ const ExpressError = require("./ExpressError");
 const cors = require("cors");
 const passportSetup = require("./passport");
 const passport = require("passport");
-const { PORT } = require("./config");
 
 // spotify auth stuff
-const session = require("express-session");
+// const session = require("express-session");
+const session = require("cookie-session");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const consolidate = require("consolidate");
 require("dotenv").config();
 
-// func for environment
-function getOrigin() {
-  return PORT === 3000
-    ? "http://localhost:3001"
-    : "https://spotify-world-tour.netlify.app";
-}
+const corsOrigin = process.env.CORS_PROD_ORIGIN || "http://localhost:3001";
 
 // Middlewares
 app.use(
   cors({
-    // origin: "http://localhost:3001",
-    // origin: "https://spotify-world-tour.netlify.app" || "http://localhost:3001",
-    origin: getOrigin(),
+    origin: corsOrigin,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })

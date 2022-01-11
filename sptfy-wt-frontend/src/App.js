@@ -29,51 +29,27 @@ function App() {
   const [showCountrySelectedError, setShowCountrySelectedError] =
     useState(false);
 
-  // development mode
-  const BASE_URL = "http://localhost:3000";
-  // production mode
-  // const BASE_URL = "https://spotify-world-tour.herokuapp.com";
-
   async function getCCToken() {
     const res = await SWTApi.getCCToken();
     setCCToken(res);
   }
 
   useEffect(() => {
-    const getUser = () => {
-      fetch(`${BASE_URL}/auth/login/success`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setAccessToken(resObject.user.accessToken);
-          setUser(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
     getCCToken();
     getUser();
   }, []);
 
+  async function getUser() {
+    const user = await SWTApi.loginUser();
+    console.log(user);
+    setUser(user);
+    setAccessToken(user.accessToken);
+  }
+
   async function logout() {
     setUser(null);
     setAccessToken(null);
-    await axios({
-      url: `${BASE_URL}/auth/logout`,
-      method: "get",
-    });
+    await SWTApi.logoutUser();
   }
 
   return (

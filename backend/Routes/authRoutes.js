@@ -4,7 +4,10 @@ const passport = require("passport");
 const SpotifyApiCaller = require("../SpotifyAPICaller");
 const { PORT } = require("../config");
 
-router.get("/client-credentials", async function (req, res) {
+const login_redirect =
+  process.env.LOGIN_REDIRECT || "http://localhost:3001/browse";
+
+router.get("/client-credentials", async function (req, res, next) {
   try {
     const clientCredentialsToken =
       await SpotifyApiCaller.getClientCredentialsToken();
@@ -14,13 +17,17 @@ router.get("/client-credentials", async function (req, res) {
   }
 });
 
-router.get("/login/success", (req, res) => {
-  if (req.user) {
-    res.status(200).json({
-      success: true,
-      message: "successful",
-      user: req.user,
-    });
+router.get("/login/success", (req, res, next) => {
+  try {
+    if (req.user) {
+      res.status(200).json({
+        success: true,
+        message: "successful",
+        user: req.user,
+      });
+    }
+  } catch (err) {
+    return next(err);
   }
 });
 
@@ -33,8 +40,9 @@ router.get("/login/failed", (req, res) => {
 
 router.get("/logout", (req, res) => {
   console.log("logged out");
-  req.session.destroy();
   req.logout();
+  res.clearCookie("sid", { path: "/" });
+  res.redirect("/");
 });
 
 router.get(
@@ -50,10 +58,7 @@ router.get(
     failureRedirect: "/login/failed",
   }),
   function (req, res) {
-    // development mode
-    res.redirect("http://localhost:3001/browse");
-    // production mode
-    // res.redirect("https://spotify-world-tour.netlify.app/browse");
+    res.redirect(login_redirect);
   }
 );
 

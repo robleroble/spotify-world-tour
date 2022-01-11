@@ -10,8 +10,7 @@ import {
 } from "./MapStyles.js";
 import "./Map.css";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoibnNhbmRlIiwiYSI6ImNrdWFudnphMTBpbmkybm8zOXUzYXlsZnMifQ.7d4a8ZfjVEARvZRA-spWNg";
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function Map() {
   const [lng, setLng] = useState(-34.5034);

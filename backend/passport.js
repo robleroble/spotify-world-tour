@@ -2,8 +2,8 @@ const SpotifyStrategy = require("passport-spotify").Strategy;
 const passport = require("passport");
 const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, PORT } = require("./config");
 
-const redirectURI = "http://localhost:3000/auth/spotify/callback";
-// const redirectURI = "https://spotify-world-tour.herokuapp.com/auth/spotify/callback";
+const redirectURI =
+  process.env.REDIRECT_URI || "http://localhost:3000/auth/spotify/callback";
 
 passport.use(
   new SpotifyStrategy(

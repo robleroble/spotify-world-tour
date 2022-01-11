@@ -1,9 +1,6 @@
 import axios from "axios";
 
-// development mode
-const BASE_URL = "http://localhost:3000";
-// production mode
-// const BASE_URL = "https://spotify-world-tour.herokuapp.com";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 axios.defaults.withCredentials = true;
 
@@ -19,6 +16,25 @@ class SWTApi {
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
+  }
+
+  static async loginUser() {
+    const url = `${BASE_URL}/auth/login/success`;
+    const method = "GET";
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true,
+    };
+    let res = await axios({ url, method, headers });
+    console.log(res);
+    return res.data.user;
+  }
+
+  static async logoutUser() {
+    const url = `${BASE_URL}/auth/logout`;
+    const method = "GET";
+    let res = await axios({ url, method });
+    return;
   }
 
   static async getCCToken() {

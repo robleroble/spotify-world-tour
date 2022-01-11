@@ -37,7 +37,6 @@ function NavBar({ logout }) {
             href="/#"
             onClick={() => {
               logout();
-              navigate("/");
             }}
             className="nav-link"
           >

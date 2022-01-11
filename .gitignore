@@ -5,3 +5,7 @@
 /backend/config.js
 
 /backend/.env
+
+/sptfy-wt-frontend/.env.development
+
+/sptfy-wt-frontend/.env.production
