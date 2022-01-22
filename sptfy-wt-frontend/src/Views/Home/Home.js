@@ -16,6 +16,7 @@ const bgImgStyle = {
 function Home() {
   const navigate = useNavigate();
   const spotifyLogin = () => {
+    // NOTE: use env variables
     if (window.location.href.includes("localhost")) {
       window.open("http://localhost:3000/auth/spotify", "_self");
     } else {

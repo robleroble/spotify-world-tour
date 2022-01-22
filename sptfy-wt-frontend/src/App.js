@@ -18,6 +18,7 @@ import SWTApi from "./API/SWTApi";
 
 function App() {
   const [user, setUser] = useState(null);
+  // NOTE: use null for empty object, or else use the empty state of the type
   const [accessToken, setAccessToken] = useState(null);
   const [ccToken, setCCToken] = useState(null);
   const [music, setMusic] = useState(null);

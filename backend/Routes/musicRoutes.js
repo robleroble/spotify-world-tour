@@ -37,8 +37,6 @@ router.post("/get-playlist-categories", async function (req, res, next) {
       accessToken,
       country
     );
-    // console.log("categories");
-    // console.log(categories);
     return res.json({ categories });
   } catch (err) {
     return next(err);
