@@ -16,7 +16,6 @@ function Browse() {
     country,
     setCategories,
     category,
-    setShowCountrySelectedError,
   } = useContext(BrowseContext);
 
   // updates music when country, toolbar, or genre changes
@@ -41,6 +40,20 @@ function Browse() {
     let type;
     let length;
     let musicIdx;
+    // NOTE
+    // if (country !== null) {
+    //   switch (spotifyToolbarCategory) {
+    //     case "New Releases":
+    //       spotifyMusic = await SWTApi.getAlbum(token, country);
+    //       type = "album";
+    //       length = spotifyMusic.items.length;
+    //       musicIdx = 0;
+    //       break;
+    //     case "Featured Playlists":
+    //       // here
+
+    //   }
+    // }
     if (spotifyToolbarCategory === "New Releases" && country !== null) {
       spotifyMusic = await SWTApi.getAlbum(token, country);
       type = "album";
@@ -83,6 +96,7 @@ function Browse() {
     if (country === null) {
       return;
       // categories = await SWTApi.getCategories(token, country);
+      // NOTE: don't need else after return
     } else {
       categories = await SWTApi.getCategories(token, country);
     }
@@ -108,7 +122,7 @@ function Browse() {
           <h1 className="countryTitle">{country.name}</h1>
           <img
             className="country-flag"
-            alt={`${country.name}`}
+            alt={country.name}
             src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country.code}.svg`}
           />
         </div>

@@ -7,6 +7,7 @@ import "./NavBar.css";
 
 function NavBar({ logout }) {
   const navigate = useNavigate();
+  // TODO: env var
   const spotifyLogin = () => {
     if (window.location.href.includes("localhost")) {
       window.open("http://localhost:3000/auth/spotify", "_self");
